@@ -1,0 +1,52 @@
+# Environment variables (contain secrets)
+.env
+backend/.env
+frontend/.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+backend/venv/
+venv/
+.venv/
+
+# Database files
+*.db
+backend/bfsi_risk.db
+
+# ChromaDB persistent storage
+backend/chroma_db/
+
+# Uploaded files
+backend/uploads/
+
+# Generated sample PDFs (re-generated on startup)
+backend/sample_pdfs/
+
+# Node modules
+frontend/node_modules/
+node_modules/
+
+# Frontend build output
+frontend/dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude
+.claude/

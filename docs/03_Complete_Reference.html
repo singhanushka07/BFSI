@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Document 3 — Complete Reference | BFSI Risk Platform</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:#fff;color:#1e293b;line-height:1.6;font-size:13px;}
+  @page{size:A4;margin:18mm 16mm;}
+  @media print{.no-print{display:none;}.page-break{page-break-before:always;}body{font-size:11px;}}
+
+  .cover{background:linear-gradient(135deg,#020818 0%,#0a2016 40%,#0f2844 100%);color:#fff;padding:60px 48px 48px;min-height:220px;border-radius:8px;margin-bottom:32px;position:relative;overflow:hidden;}
+  .cover::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(34,197,94,0.12) 0%,transparent 70%);border-radius:50%;}
+  .cover-badge{display:inline-block;background:rgba(34,197,94,0.2);border:1px solid rgba(34,197,94,0.5);color:#86efac;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.5px;margin-bottom:16px;}
+  .cover-title{font-size:26px;font-weight:800;line-height:1.2;margin-bottom:8px;}
+  .cover-subtitle{color:rgba(255,255,255,0.55);font-size:13px;}
+  .cover-doc-label{position:absolute;top:20px;right:24px;color:rgba(34,197,94,0.8);font-size:11px;font-weight:600;letter-spacing:1px;}
+
+  h2{font-size:15px;font-weight:700;color:#0f172a;border-left:3px solid #22c55e;padding-left:12px;margin:24px 0 14px;letter-spacing:.2px;}
+  h3{font-size:13px;font-weight:700;color:#0f172a;margin:16px 0 8px;}
+  p{color:#334155;margin-bottom:8px;font-size:12.5px;}
+  ul,ol{color:#334155;padding-left:18px;margin-bottom:10px;font-size:12.5px;}
+  li{margin-bottom:4px;}
+
+  .card{border:1px solid #e2e8f0;border-radius:8px;padding:14px 16px;margin-bottom:12px;background:#fafafa;break-inside:avoid;}
+  .card-title{font-size:13px;font-weight:700;color:#0f172a;margin-bottom:6px;}
+  .card-sub{font-size:10px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;}
+
+  .code-block{background:#0f172a;color:#e2e8f0;font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:12px 14px;border-radius:6px;margin:8px 0;line-height:1.6;white-space:pre-wrap;}
+  code{font-family:'JetBrains Mono',monospace;background:#f1f5f9;padding:1px 5px;border-radius:3px;font-size:11px;color:#0369a1;}
+
+  table{width:100%;border-collapse:collapse;font-size:11.5px;margin:10px 0;}
+  th{background:#f1f5f9;color:#475569;font-weight:600;text-align:left;padding:8px 10px;border:1px solid #e2e8f0;}
+  td{padding:7px 10px;border:1px solid #e2e8f0;vertical-align:top;color:#334155;}
+  tr:nth-child(even) td{background:#fafafa;}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+
+  .highlight{background:#f0fdf4;border-left:3px solid #22c55e;padding:10px 14px;border-radius:0 6px 6px 0;margin:10px 0;font-size:12px;color:#166534;}
+  .warning{background:#fff7ed;border-left:3px solid #f97316;padding:10px 14px;border-radius:0 6px 6px 0;margin:10px 0;font-size:12px;color:#9a3412;}
+  .info{background:#eff6ff;border-left:3px solid #3b82f6;padding:10px 14px;border-radius:0 6px 6px 0;margin:10px 0;font-size:12px;color:#1e40af;}
+
+  .step{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
+  .step-num{min-width:28px;height:28px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+  .step-content{}
+
+  .api-row{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #f1f5f9;}
+  .method{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;flex-shrink:0;min-width:46px;text-align:center;}
+  .get{background:#dbeafe;color:#1e40af;}
+  .post{background:#dcfce7;color:#166534;}
+  .delete{background:#fee2e2;color:#991b1b;}
+  .api-path{font-family:'JetBrains Mono',monospace;font-size:11px;color:#0369a1;flex-shrink:0;min-width:220px;}
+  .api-desc{color:#475569;font-size:11.5px;}
+
+  .env-row{display:grid;grid-template-columns:200px 1fr 120px;gap:8px;padding:6px 0;border-bottom:1px solid #f1f5f9;font-size:11.5px;}
+  .env-key{font-family:'JetBrains Mono',monospace;color:#0369a1;}
+  .env-desc{color:#475569;}
+  .env-req{font-size:10px;font-weight:700;padding:2px 6px;border-radius:10px;}
+  .req{background:#fee2e2;color:#991b1b;}
+  .opt{background:#dcfce7;color:#166534;}
+
+  .badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:600;}
+  .b-green{background:#dcfce7;color:#166534;}
+  .b-blue{background:#dbeafe;color:#1e40af;}
+  .b-orange{background:#fff7ed;color:#9a3412;}
+  .b-red{background:#fee2e2;color:#991b1b;}
+
+  footer{margin-top:32px;padding-top:16px;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;color:#94a3b8;font-size:10px;}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-doc-label">DOCUMENT 3 OF 3</div>
+  <div class="cover-badge">Complete Reference</div>
+  <div class="cover-title">Everything Else —<br/>Developer & Ops Reference</div>
+  <div class="cover-subtitle">BFSI Multi-Agent Financial Risk Assessment Platform<br/>Setup guide, API reference, data models, error handling, security, future roadmap & glossary</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="card" style="background:#f8fafc;">
+  <div class="card-title">Contents of This Document</div>
+  <div class="grid2" style="font-size:12px;color:#475569;">
+    <div>
+      <div style="margin-bottom:3px;"><strong style="color:#0f172a;">1.</strong> Project File Structure</div>
+      <div style="margin-bottom:3px;"><strong style="color:#0f172a;">2.</strong> Local Setup — Step by Step</div>
+      <div style="margin-bottom:3px;"><strong style="color:#0f172a;">3.</strong> All Environment Variables</div>
+      <div style="margin-bottom:3px;"><strong style="color:#0f172a;">4.</strong> Full API Endpoint Reference</div>
+      <div style="margin-bottom:3px;"><strong style="color:#0f172a;">5.</strong> Database Schema</div>
+      <div style="margin-bottom:3px;"><strong style="color:#0f172a;">6.</strong> Data Flow Walkthrough</div>
+    </div>
+    <div>
+      <div style="margin-bottom:3px;"><strong style="color:#0f172a;">7.</strong> Error Handling Strategy</div>
+      <div style="margin-bottom:3px;"><strong style="color:#0f172a;">8.</strong> Security Model</div>
+      <div style="margin-bottom:3px;"><strong style="color:#0f172a;">9.</strong> Deployment Checklist</div>
+      <div style="margin-bottom:3px;"><strong style="color:#0f172a;">10.</strong> Future Roadmap</div>
+      <div style="margin-bottom:3px;"><strong style="color:#0f172a;">11.</strong> Glossary</div>
+      <div style="margin-bottom:3px;"><strong style="color:#0f172a;">12.</strong> Resume Bullet Points</div>
+    </div>
+  </div>
+</div>
+
+<!-- 1. FILE STRUCTURE -->
+<h2>1. Project File Structure</h2>
+<div class="code-block">Project_1/
+├── backend/
+│   ├── main.py                    ← FastAPI app + CORS + router registration
+│   ├── requirements.txt           ← All Python dependencies
+│   ├── .env.example               ← Template for environment variables
+│   ├── agents/
+│   │   ├── orchestrator.py        ← LangGraph state machine (RiskState + graph)
+│   │   ├── market_risk.py         ← Market Risk Agent (VaR, volatility, beta)
+│   │   ├── sentiment.py           ← Sentiment Agent (news, NLP scoring)
+│   │   ├── financial_report.py    ← Financial Report Agent (RAG + metrics)
+│   │   ├── regulatory.py          ← Regulatory Compliance Agent (8 frameworks)
+│   │   ├── guardrails.py          ← Guardrails + hallucination detection (LLM-as-judge)
+│   │   ├── devils_advocate.py     ← Devil's Advocate agent (challenges findings)
+│   │   └── judge.py               ← Judge agent (resolves debate, adjusts scores)
+│   ├── auth/
+│   │   └── jwt_handler.py         ← JWT create/decode, bcrypt, OAuth2 dependency
+│   ├── rag/
+│   │   ├── pipeline.py            ← ChromaDB: ingest_pdf, query_collection
+│   │   ├── hybrid_search.py       ← BM25 + dense hybrid retrieval
+│   │   └── reranker.py            ← LLM batch re-ranker (GPT scoring)
+│   ├── mcp_server/
+│   │   └── server.py              ← MCP FastAPI router (/mcp/tools, /mcp/invoke)
+│   ├── models/
+│   │   └── database.py            ← SQLAlchemy models + get_db dependency
+│   ├── routers/
+│   │   ├── auth.py                ← /api/auth/* (register, login, me)
+│   │   ├── agents.py              ← /api/agents/* (analyze, history)
+│   │   ├── rag.py                 ← /api/rag/* (upload, query, documents)
+│   │   ├── dashboard.py           ← /api/dashboard/* (stats, trend, overview)
+│   │   ├── stream.py              ← /api/agents/analyze-stream (SSE streaming)
+│   │   └── chat.py                ← /api/chat/* (conversational risk chat)
+│   ├── data/
+│   │   └── mock_data.py           ← Mock financial data generators
+│   └── sample_pdfs/               ← Pre-loaded financial PDFs (place here)
+│
+├── frontend/
+│   ├── index.html                 ← Entry HTML with Google Fonts
+│   ├── package.json               ← npm dependencies
+│   ├── vite.config.js             ← Vite + /api proxy to backend
+│   ├── tailwind.config.js         ← Custom colors, animations
+│   ├── vercel.json                ← SPA rewrites for Vercel
+│   └── src/
+│       ├── App.jsx                ← React Router routes + ProtectedRoute
+│       ├── main.jsx               ← React root + Toaster
+│       ├── index.css              ← Tailwind + custom CSS classes
+│       ├── api/client.js          ← Axios instance + interceptors + all API calls
+│       ├── store/authStore.js     ← Zustand auth store (persisted)
+│       ├── pages/
+│       │   ├── Landing.jsx        ← Full landing page
+│       │   ├── Login.jsx          ← Login/Register page
+│       │   └── Dashboard.jsx      ← 4-tab main dashboard
+│       └── components/
+│           ├── common/Navbar.jsx  ← Top navigation bar
+│           ├── common/Footer.jsx  ← Footer with tech stack
+│           ├── landing/Hero.jsx               ← Animated hero section
+│           ├── landing/Features.jsx           ← 4 agent + platform feature cards
+│           ├── landing/ArchitectureDiagram.jsx ← Interactive SVG diagram
+│           ├── landing/TechStack.jsx          ← 12 tech cards
+│           ├── dashboard/RiskScoreGauge.jsx   ← Animated SVG gauge
+│           ├── dashboard/AgentAnalysisPanel.jsx ← Collapsible agent results
+│           ├── dashboard/RiskCharts.jsx       ← Area/Line/Bar/Radar charts
+│           ├── dashboard/PDFUpload.jsx        ← Upload + RAG query interface
+│           ├── dashboard/StreamingAgentIndicator.jsx ← Live SSE streaming progress
+│           ├── dashboard/TrustScoreBadge.jsx  ← Overall guardrails trust score badge
+│           ├── dashboard/DebatePanel.jsx      ← Multi-agent debate visualization
+│           └── dashboard/ChatPanel.jsx        ← Conversational risk chat interface
+│
+├── render.yaml                    ← Render deployment config
+└── START.md                       ← Quick start instructions</div>
+
+<!-- 2. LOCAL SETUP -->
+<h2>2. Local Setup — Step by Step</h2>
+
+<h3>Prerequisites</h3>
+<ul>
+  <li>Python 3.11+ (<code>python --version</code>)</li>
+  <li>Node.js 18+ (<code>node --version</code>)</li>
+  <li>OpenAI API key with GPT-4o access</li>
+  <li>Git</li>
+</ul>
+
+<h3>Backend Setup</h3>
+<div class="step"><div class="step-num">1</div><div class="step-content"><strong>Create virtual environment</strong><br/><div class="code-block">cd backend
+python -m venv venv
+# Windows:  venv\Scripts\activate
+# Mac/Linux: source venv/bin/activate</div></div></div>
+
+<div class="step"><div class="step-num">2</div><div class="step-content"><strong>Install dependencies</strong><br/><div class="code-block">pip install -r requirements.txt</div>
+This installs: FastAPI, uvicorn, LangGraph, LangChain, langchain-openai, ChromaDB, pypdf, SQLAlchemy, python-jose, passlib, and more.</div></div>
+
+<div class="step"><div class="step-num">3</div><div class="step-content"><strong>Configure environment</strong><br/><div class="code-block">cp .env.example .env
+# Edit .env:
+OPENAI_API_KEY=sk-your-key-here
+SECRET_KEY=generate-a-random-64-char-string
+DATABASE_URL=sqlite:///./bfsi_risk.db</div></div></div>
+
+<div class="step"><div class="step-num">4</div><div class="step-content"><strong>Run the backend</strong><br/><div class="code-block">uvicorn main:app --reload --port 8000</div>
+Backend starts at <code>http://localhost:8000</code><br/>
+Interactive API docs: <code>http://localhost:8000/api/docs</code></div></div>
+
+<h3>Frontend Setup</h3>
+<div class="step"><div class="step-num">5</div><div class="step-content"><strong>Install npm packages</strong><br/><div class="code-block">cd frontend
+npm install</div>
+Installs: React, Vite, Tailwind CSS, Framer Motion, Recharts, Zustand, Axios, React Router, Lucide icons</div></div>
+
+<div class="step"><div class="step-num">6</div><div class="step-content"><strong>Set frontend env (optional for dev)</strong><br/><div class="code-block">cp .env.example .env
+# VITE_API_URL=http://localhost:8000/api
+# (Vite proxy already handles /api → 8000 for dev)</div></div></div>
+
+<div class="step"><div class="step-num">7</div><div class="step-content"><strong>Start dev server</strong><br/><div class="code-block">npm run dev</div>
+Frontend at <code>http://localhost:5173</code><br/>
+The <code>vite.config.js</code> proxy routes <code>/api/*</code> → <code>localhost:8000</code> automatically.</div></div>
+
+<div class="highlight">Both services must be running simultaneously: backend on port 8000, frontend on port 5173. They communicate through the Vite proxy during development.</div>
+
+<!-- 3. ENVIRONMENT VARIABLES -->
+<h2>3. Environment Variables</h2>
+
+<h3>Backend (.env)</h3>
+<div class="env-row" style="font-weight:700;color:#0f172a;font-size:11px;border-bottom:2px solid #e2e8f0;">
+  <div>Variable</div><div>Description</div><div>Required</div>
+</div>
+<div class="env-row"><div class="env-key">OPENAI_API_KEY</div><div class="env-desc">OpenAI API key for GPT-4o-mini + text-embedding-3-small. Without this, agents fall back to metric-based analysis (no LLM).</div><div><span class="env-req req">Required</span></div></div>
+<div class="env-row"><div class="env-key">SECRET_KEY</div><div class="env-desc">64+ character random string used to sign JWT tokens. Never expose this publicly. Generate with: <code>openssl rand -hex 32</code></div><div><span class="env-req req">Required</span></div></div>
+<div class="env-row"><div class="env-key">DATABASE_URL</div><div class="env-desc">SQLAlchemy connection string. Default: <code>sqlite:///./bfsi_risk.db</code>. For Postgres: <code>postgresql://user:pass@host/db</code></div><div><span class="env-req opt">Optional</span></div></div>
+<div class="env-row"><div class="env-key">ALGORITHM</div><div class="env-desc">JWT signing algorithm. Default: <code>HS256</code>. Don't change unless you have a specific reason.</div><div><span class="env-req opt">Optional</span></div></div>
+<div class="env-row"><div class="env-key">ACCESS_TOKEN_EXPIRE_MINUTES</div><div class="env-desc">JWT token lifetime in minutes. Default: 30. Set to 60 or 1440 for longer sessions.</div><div><span class="env-req opt">Optional</span></div></div>
+<div class="env-row"><div class="env-key">CHROMA_PERSIST_DIR</div><div class="env-desc">Directory where ChromaDB stores vector embeddings. Default: <code>./chroma_db</code>. Must be writable by the process.</div><div><span class="env-req opt">Optional</span></div></div>
+<div class="env-row"><div class="env-key">CORS_ORIGINS</div><div class="env-desc">Comma-separated list of allowed origins. Example: <code>http://localhost:5173,https://app.vercel.app</code></div><div><span class="env-req opt">Optional</span></div></div>
+
+<h3>Frontend (.env)</h3>
+<div class="env-row"><div class="env-key">VITE_API_URL</div><div class="env-desc">Base URL for API calls. In production: <code>https://your-render-app.onrender.com/api</code>. In dev: not needed (Vite proxy handles it).</div><div><span class="env-req opt">Optional</span></div></div>
+
+<!-- 4. API ENDPOINTS -->
+<h2 class="page-break">4. Full API Endpoint Reference</h2>
+
+<h3>Authentication — <code>/api/auth</code></h3>
+<div class="api-row"><div class="method post">POST</div><div class="api-path">/api/auth/register</div><div class="api-desc">Create new account. Body: <code>{email, username, password, full_name}</code>. Returns JWT + user object.</div></div>
+<div class="api-row"><div class="method post">POST</div><div class="api-path">/api/auth/login</div><div class="api-desc">OAuth2 form login. Body: <code>username={email}&password={pw}</code> (form-encoded). Returns JWT + user object.</div></div>
+<div class="api-row"><div class="method get">GET</div><div class="api-path">/api/auth/me</div><div class="api-desc">Returns current user profile. Requires Bearer token.</div></div>
+
+<h3>Risk Analysis Agents — <code>/api/agents</code></h3>
+<div class="api-row"><div class="method post">POST</div><div class="api-path">/api/agents/analyze</div><div class="api-desc">Run full 4-agent LangGraph analysis. Body: <code>{company, ticker, sector, collection_name?}</code>. Returns complete risk report + agent details.</div></div>
+<div class="api-row"><div class="method get">GET</div><div class="api-path">/api/agents/history</div><div class="api-desc">List all past analyses for current user. Returns array of summary records.</div></div>
+<div class="api-row"><div class="method get">GET</div><div class="api-path">/api/agents/history/{id}</div><div class="api-desc">Full detail of a specific analysis including all 4 agent outputs (JSON).</div></div>
+<div class="api-row"><div class="method get">GET</div><div class="api-path">/api/agents/companies</div><div class="api-desc">Returns list of 5 demo companies with name, ticker, sector. No auth required.</div></div>
+
+<h3>SSE Streaming — <code>/api/agents/analyze-stream</code></h3>
+<div class="api-row"><div class="method post">POST</div><div class="api-path">/api/agents/analyze-stream?token=...</div><div class="api-desc">Run full analysis with real-time SSE streaming. Auth via query param (EventSource cannot set headers). Returns server-sent events for each agent completion, debate rounds, guardrails validation, and final result.</div></div>
+
+<h3>Conversational Chat — <code>/api/chat</code></h3>
+<div class="api-row"><div class="method post">POST</div><div class="api-path">/api/chat/message</div><div class="api-desc">Send a chat message about an analysis. Body: <code>{analysis_id, message}</code>. Returns AI response with risk-context-aware answers.</div></div>
+<div class="api-row"><div class="method get">GET</div><div class="api-path">/api/chat/history/{analysis_id}</div><div class="api-desc">Get full chat history for a specific analysis. Returns array of messages with role, content, timestamps.</div></div>
+<div class="api-row"><div class="method delete">DEL</div><div class="api-path">/api/chat/history/{analysis_id}</div><div class="api-desc">Clear all chat messages for a specific analysis. Returns confirmation.</div></div>
+
+<h3>RAG Pipeline — <code>/api/rag</code></h3>
+<div class="api-row"><div class="method post">POST</div><div class="api-path">/api/rag/upload</div><div class="api-desc">Upload PDF (multipart/form-data). Fields: <code>file</code>, <code>company</code>, <code>doc_type</code>. Ingests into ChromaDB. Returns collection name + chunk count.</div></div>
+<div class="api-row"><div class="method post">POST</div><div class="api-path">/api/rag/query</div><div class="api-desc">Semantic search over a collection. Body: <code>{collection, query, n_results}</code>. Returns top-k matching chunks with page + distance.</div></div>
+<div class="api-row"><div class="method get">GET</div><div class="api-path">/api/rag/documents</div><div class="api-desc">List all documents uploaded by current user with metadata.</div></div>
+<div class="api-row"><div class="method delete">DEL</div><div class="api-path">/api/rag/documents/{id}</div><div class="api-desc">Delete document record and its ChromaDB collection.</div></div>
+
+<h3>Dashboard — <code>/api/dashboard</code></h3>
+<div class="api-row"><div class="method get">GET</div><div class="api-path">/api/dashboard/stats</div><div class="api-desc">Aggregate stats: total analyses, avg score, risk distribution, 5 recent analyses.</div></div>
+<div class="api-row"><div class="method get">GET</div><div class="api-path">/api/dashboard/risk-trend/{company}</div><div class="api-desc">30-day mock historical risk scores for all 4 dimensions. Query: <code>?days=30</code></div></div>
+<div class="api-row"><div class="method get">GET</div><div class="api-path">/api/dashboard/overview</div><div class="api-desc">Agent average scores across all analyses + latest analysis + 14-day trend data.</div></div>
+
+<h3>MCP Server — <code>/mcp</code></h3>
+<div class="api-row"><div class="method get">GET</div><div class="api-path">/mcp/tools</div><div class="api-desc">Returns MCP tools manifest — list of all available tools with name, description, parameters.</div></div>
+<div class="api-row"><div class="method post">POST</div><div class="api-path">/mcp/invoke</div><div class="api-desc">Invoke a tool by name. Body: <code>{tool_name, parameters}</code>. Returns tool result or error.</div></div>
+
+<h3>Utility</h3>
+<div class="api-row"><div class="method get">GET</div><div class="api-path">/api/health</div><div class="api-desc">Health check. Returns platform name, version, agent list, stack. No auth required.</div></div>
+<div class="api-row"><div class="method get">GET</div><div class="api-path">/api/docs</div><div class="api-desc">Swagger UI — interactive API documentation. Try all endpoints directly in the browser.</div></div>
+
+<!-- 5. DATABASE SCHEMA -->
+<h2>5. Database Schema</h2>
+
+<div class="grid2">
+<div>
+<h3>users table</h3>
+<table>
+  <tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+  <tr><td>id</td><td>INTEGER PK</td><td>Auto-increment</td></tr>
+  <tr><td>email</td><td>VARCHAR UNIQUE</td><td>Login identifier</td></tr>
+  <tr><td>username</td><td>VARCHAR UNIQUE</td><td>Display name</td></tr>
+  <tr><td>hashed_password</td><td>VARCHAR</td><td>bcrypt hash</td></tr>
+  <tr><td>full_name</td><td>VARCHAR</td><td>Optional</td></tr>
+  <tr><td>is_active</td><td>BOOLEAN</td><td>Default: true</td></tr>
+  <tr><td>created_at</td><td>DATETIME</td><td>UTC timestamp</td></tr>
+</table>
+</div>
+<div>
+<h3>uploaded_documents table</h3>
+<table>
+  <tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+  <tr><td>id</td><td>INTEGER PK</td><td></td></tr>
+  <tr><td>user_id</td><td>INTEGER FK</td><td>→ users.id</td></tr>
+  <tr><td>filename</td><td>VARCHAR</td><td>Original filename</td></tr>
+  <tr><td>company</td><td>VARCHAR</td><td>User-provided</td></tr>
+  <tr><td>doc_type</td><td>VARCHAR</td><td>annual_report/10k/etc</td></tr>
+  <tr><td>chroma_collection</td><td>VARCHAR</td><td>ChromaDB collection name</td></tr>
+  <tr><td>pages</td><td>INTEGER</td><td>Number of chunks indexed</td></tr>
+  <tr><td>uploaded_at</td><td>DATETIME</td><td>UTC timestamp</td></tr>
+</table>
+</div>
+</div>
+
+<h3 style="margin-top:16px;">risk_analyses table</h3>
+<table>
+  <tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+  <tr><td>id</td><td>INTEGER PK</td><td></td></tr>
+  <tr><td>user_id</td><td>INTEGER FK</td><td>→ users.id</td></tr>
+  <tr><td>company_name</td><td>VARCHAR</td><td>Analyzed company</td></tr>
+  <tr><td>ticker</td><td>VARCHAR</td><td>Stock symbol</td></tr>
+  <tr><td>overall_risk_score</td><td>FLOAT</td><td>Weighted aggregate (0–100)</td></tr>
+  <tr><td>market_risk_score</td><td>FLOAT</td><td>Market agent score</td></tr>
+  <tr><td>sentiment_score</td><td>FLOAT</td><td>Sentiment agent score</td></tr>
+  <tr><td>financial_risk_score</td><td>FLOAT</td><td>Financial report agent score</td></tr>
+  <tr><td>compliance_risk_score</td><td>FLOAT</td><td>Regulatory agent score</td></tr>
+  <tr><td>risk_level</td><td>VARCHAR</td><td>LOW/MEDIUM/HIGH/CRITICAL</td></tr>
+  <tr><td>summary</td><td>TEXT</td><td>Human-readable summary</td></tr>
+  <tr><td>market_analysis</td><td>TEXT</td><td>Full market agent JSON</td></tr>
+  <tr><td>sentiment_analysis</td><td>TEXT</td><td>Full sentiment agent JSON</td></tr>
+  <tr><td>financial_analysis</td><td>TEXT</td><td>Full financial agent JSON</td></tr>
+  <tr><td>compliance_analysis</td><td>TEXT</td><td>Full compliance agent JSON</td></tr>
+  <tr><td>debate_analysis</td><td>TEXT</td><td>Devil's Advocate + Judge debate JSON</td></tr>
+  <tr><td>guardrails_result</td><td>TEXT</td><td>Guardrails validation + hallucination check JSON</td></tr>
+  <tr><td>adjusted_risk_score</td><td>FLOAT</td><td>Post-debate adjusted risk score (0–100)</td></tr>
+  <tr><td>trust_score</td><td>FLOAT</td><td>Guardrails trust/confidence score (0–1)</td></tr>
+  <tr><td>created_at</td><td>DATETIME</td><td>UTC timestamp</td></tr>
+</table>
+
+<h3 style="margin-top:16px;">chat_messages table</h3>
+<table>
+  <tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+  <tr><td>id</td><td>INTEGER PK</td><td>Auto-increment</td></tr>
+  <tr><td>analysis_id</td><td>INTEGER FK</td><td>→ risk_analyses.id</td></tr>
+  <tr><td>user_id</td><td>INTEGER FK</td><td>→ users.id</td></tr>
+  <tr><td>role</td><td>VARCHAR</td><td>"user" or "assistant"</td></tr>
+  <tr><td>content</td><td>TEXT</td><td>Message text</td></tr>
+  <tr><td>created_at</td><td>DATETIME</td><td>UTC timestamp</td></tr>
+</table>
+
+<!-- 6. DATA FLOW -->
+<h2 class="page-break">6. Data Flow Walkthrough</h2>
+<p>Complete data flow for a single "Run Analysis" request (streaming path via SSE):</p>
+
+<div class="step"><div class="step-num">1</div><div class="step-content"><strong>Browser → FastAPI (SSE):</strong> React sends POST <code>/api/agents/analyze-stream?token={jwt}</code>. Auth is via query param because the EventSource API cannot set headers. The server opens an SSE stream back to the browser.</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-content"><strong>JWT Validation:</strong> FastAPI validates the token from the query parameter, queries SQLite for the user, and injects it into the route handler.</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-content"><strong>LangGraph Invoked:</strong> <code>run_full_analysis("TechCorp", "TCG")</code> creates initial <code>RiskState</code> and calls <code>graph.invoke(state)</code>.</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-content"><strong>Market Risk Node:</strong> Calls mock stock generator (or MCP tool), computes VaR/volatility, calls GPT-4o via LangChain chain, returns <code>market_result</code> dict. <strong>SSE event sent:</strong> <code>agent_complete: market_risk</code>.</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-content"><strong>Sentiment Node:</strong> Generates mock news feed, computes sentiment stats, calls GPT-4o for analysis text. <strong>SSE event sent:</strong> <code>agent_complete: sentiment</code>.</div></div>
+<div class="step"><div class="step-num">6</div><div class="step-content"><strong>Financial Report Node:</strong> If <code>collection_name</code> provided, queries ChromaDB for top-5 relevant chunks. Combines RAG context + financial metrics in GPT-4o prompt. <strong>SSE event sent:</strong> <code>agent_complete: financial_report</code>.</div></div>
+<div class="step"><div class="step-num">7</div><div class="step-content"><strong>Regulatory Node:</strong> Runs 8 compliance checks (random-weighted for demo), calls GPT-4o with violation summary for professional assessment text. <strong>SSE event sent:</strong> <code>agent_complete: regulatory</code>.</div></div>
+<div class="step"><div class="step-num">8</div><div class="step-content"><strong>Aggregator Node:</strong> Computes weighted average: <code>(market×0.3) + (sentiment×0.2) + (financial×0.3) + (compliance×0.2)</code>. Builds <code>final_report</code> dict.</div></div>
+<div class="step"><div class="step-num">9</div><div class="step-content"><strong>Guardrails Validation:</strong> The guardrails agent validates all agent outputs using an LLM-as-judge pattern. Checks for hallucinations, score consistency, and factual grounding. Produces a <code>trust_score</code> (0–1). <strong>SSE event sent:</strong> <code>guardrails_complete</code>.</div></div>
+<div class="step"><div class="step-num">10</div><div class="step-content"><strong>Devil's Advocate Challenge:</strong> The Devil's Advocate agent reviews the aggregated findings and challenges weak reasoning, unsupported claims, and optimistic assumptions. Generates counter-arguments for each agent's output. <strong>SSE event sent:</strong> <code>debate_challenge</code>.</div></div>
+<div class="step"><div class="step-num">11</div><div class="step-content"><strong>Judge Verdict:</strong> The Judge agent evaluates both the original findings and the Devil's Advocate challenges. Resolves disagreements, produces a balanced verdict, and computes an <code>adjusted_risk_score</code>. <strong>SSE event sent:</strong> <code>judge_verdict</code>.</div></div>
+<div class="step"><div class="step-num">12</div><div class="step-content"><strong>Storage:</strong> FastAPI route saves a <code>RiskAnalysis</code> record to SQLite with all scores, agent JSON output, debate analysis, guardrails result, adjusted risk score, and trust score.</div></div>
+<div class="step"><div class="step-num">13</div><div class="step-content"><strong>SSE Complete:</strong> Final <code>analysis_complete</code> event sent with the full <code>final_report</code> JSON. The SSE stream closes. Dashboard renders the gauge, agent panels, debate panel, trust score badge, and charts.</div></div>
+<div class="step"><div class="step-num">14</div><div class="step-content"><strong>Chat (Post-Analysis):</strong> User can open the ChatPanel to ask follow-up questions about the analysis. Messages are sent via POST <code>/api/chat/message</code>, stored in the <code>chat_messages</code> table, and answered by GPT-4o with the full analysis context.</div></div>
+
+<!-- 7. ERROR HANDLING -->
+<h2>7. Error Handling Strategy</h2>
+<div class="grid2">
+<div class="card">
+  <div class="card-sub">Backend — Agent Failures</div>
+  <p>Each LangGraph agent node is wrapped in try/except. If GPT-4o fails (rate limit, network error), the agent falls back to metric-computed analysis text and still returns a valid score. The error is stored in <code>state["error"]</code> but doesn't crash the pipeline.</p>
+</div>
+<div class="card">
+  <div class="card-sub">Backend — HTTP Errors</div>
+  <p>FastAPI raises <code>HTTPException</code> with specific status codes: <code>400</code> (duplicate email), <code>401</code> (invalid JWT), <code>404</code> (analysis not found), <code>422</code> (Pydantic validation failed), <code>500</code> (agent analysis failed).</p>
+</div>
+<div class="card">
+  <div class="card-sub">Frontend — Axios Interceptor</div>
+  <p><code>401 Unauthorized</code> responses automatically clear the Zustand auth store and redirect to <code>/login</code>. Other errors are caught in try/catch blocks and displayed via <code>react-hot-toast</code> error toasts.</p>
+</div>
+<div class="card">
+  <div class="card-sub">Frontend — Loading States</div>
+  <p>All async operations show loading states: spinner on the Analyze button while agents run, Loader2 icon on PDF upload. Disabled states prevent double-submissions.</p>
+</div>
+</div>
+<div class="grid2">
+<div class="card">
+  <div class="card-sub">SSE Stream Error Recovery</div>
+  <p>If the SSE connection drops mid-analysis, the frontend detects the <code>onerror</code> event and falls back to polling <code>/api/agents/history/{id}</code> for the completed result. The backend writes partial progress to the database, so results are never lost. Server-side generator catches agent exceptions and sends an <code>error</code> SSE event before closing the stream.</p>
+</div>
+<div class="card">
+  <div class="card-sub">Chat Error Handling</div>
+  <p>Chat endpoint errors (GPT-4o failures, rate limits) return a structured error response. The ChatPanel displays a retry button. Messages are only persisted to <code>chat_messages</code> after a successful AI response — failed attempts do not pollute the conversation history. Input is validated and sanitized before being passed to the LLM prompt.</p>
+</div>
+<div class="card">
+  <div class="card-sub">Debate Timeout Handling</div>
+  <p>The Devil's Advocate and Judge agents have a configurable timeout. If either agent exceeds the timeout, the pipeline continues with the original aggregated scores (no adjustment). A <code>debate_timeout</code> SSE event is sent so the frontend displays a warning that the debate phase was skipped. The guardrails trust score is still computed independently.</p>
+</div>
+<div class="card">
+  <div class="card-sub">Guardrails Fallback</div>
+  <p>If the guardrails validation (LLM-as-judge) fails, the system defaults to a <code>trust_score</code> of <code>null</code> and proceeds without blocking the analysis. The TrustScoreBadge shows an "Unverified" state. No hallucination flags are raised, and the original scores are preserved.</p>
+</div>
+</div>
+
+<!-- 8. SECURITY MODEL -->
+<h2>8. Security Model</h2>
+<table>
+  <tr><th>Threat</th><th>Mitigation</th></tr>
+  <tr><td>Password theft via DB breach</td><td>bcrypt with cost factor 10. Even with the hash, brute-force is computationally infeasible at scale.</td></tr>
+  <tr><td>Token theft / replay</td><td>JWTs expire in 30 minutes. SECRET_KEY is never exposed. HTTPS in production encrypts tokens in transit.</td></tr>
+  <tr><td>Cross-user data access</td><td>All database queries filter by <code>user_id = current_user.id</code>. User A cannot access User B's analyses or documents.</td></tr>
+  <tr><td>Malicious file upload</td><td>File extension validated (<code>.pdf</code> only). File saved with user ID prefix to prevent path traversal. pypdf reads text only — no code execution.</td></tr>
+  <tr><td>SQL injection</td><td>SQLAlchemy ORM uses parameterized queries. No raw SQL string construction anywhere in the codebase.</td></tr>
+  <tr><td>Cross-Origin requests</td><td>CORS whitelist restricts which origins can make API calls. Wildcard <code>*</code> is never used for credentials.</td></tr>
+  <tr><td>API key exposure</td><td>OPENAI_API_KEY stored only in server-side .env. Never in frontend code, never in responses, never in logs.</td></tr>
+  <tr><td>Prompt injection via PDFs</td><td>PDF content is retrieved by ChromaDB and included as context — not executed. GPT-4o's system prompt establishes the analyst role, making injection attempts ineffective for role hijacking.</td></tr>
+  <tr><td>Chat input injection</td><td>Chat messages are sanitized before inclusion in the LLM prompt. User input is treated as data, not instructions. The system prompt for chat is hardcoded and cannot be overridden by user messages. Maximum message length is enforced.</td></tr>
+  <tr><td>SSE / streaming auth</td><td>SSE endpoints authenticate via JWT passed as a query parameter (<code>?token=...</code>) because the browser EventSource API cannot set custom headers. Tokens are validated identically to Bearer header auth. HTTPS encrypts the token in transit; query param tokens are short-lived.</td></tr>
+</table>
+
+<!-- 9. DEPLOYMENT CHECKLIST -->
+<h2 class="page-break">9. Deployment Checklist</h2>
+
+<h3>Pre-deployment</h3>
+<div style="font-size:12px;color:#334155;">
+  <div style="padding:5px 0;border-bottom:1px solid #f1f5f9;">☐ &nbsp;Generate a cryptographically secure <code>SECRET_KEY</code>: <code>openssl rand -hex 32</code></div>
+  <div style="padding:5px 0;border-bottom:1px solid #f1f5f9;">☐ &nbsp;Set <code>CORS_ORIGINS</code> to production Vercel URL only (remove localhost)</div>
+  <div style="padding:5px 0;border-bottom:1px solid #f1f5f9;">☐ &nbsp;Set <code>VITE_API_URL</code> in Vercel to the Render backend URL</div>
+  <div style="padding:5px 0;border-bottom:1px solid #f1f5f9;">☐ &nbsp;Verify <code>OPENAI_API_KEY</code> is set in Render env vars, not in code</div>
+  <div style="padding:5px 0;border-bottom:1px solid #f1f5f9;">☐ &nbsp;Run <code>npm run build</code> locally to catch any build errors before deploying</div>
+  <div style="padding:5px 0;border-bottom:1px solid #f1f5f9;">☐ &nbsp;Test <code>/api/health</code> endpoint returns 200 after Render deploy</div>
+  <div style="padding:5px 0;border-bottom:1px solid #f1f5f9;">☐ &nbsp;Test registration + login flow end-to-end on the live deployment</div>
+  <div style="padding:5px 0;">☐ &nbsp;Test one full risk analysis on the deployed platform</div>
+</div>
+
+<h3 style="margin-top:14px;">Render-specific Notes</h3>
+<ul>
+  <li>Free tier services <strong>sleep after 15 minutes of inactivity</strong> → 30–60 second cold start. Expected behavior for free tier.</li>
+  <li>ChromaDB data is stored in <code>./chroma_db/</code> — this is <strong>ephemeral on Render free tier</strong>. Uploaded PDFs will need to be re-uploaded after each deploy.</li>
+  <li>SQLite <code>bfsi_risk.db</code> is also ephemeral — user accounts reset on redeploy. Use Render's managed PostgreSQL (free tier) for persistent user data in production.</li>
+  <li>Render auto-deploys from the connected GitHub branch on every push.</li>
+</ul>
+
+<!-- 10. ROADMAP -->
+<h2>10. Future Roadmap</h2>
+
+<h3>Implemented in v2.0 <span class="badge b-green">DONE</span></h3>
+<table>
+  <tr><th>Feature</th><th>Details</th><th>Status</th></tr>
+  <tr><td>SSE Streaming</td><td>Real-time server-sent events during analysis — each agent completion, guardrails, debate, and final result streamed live to the browser via <code>/api/agents/analyze-stream</code>.</td><td><span class="badge b-green">Shipped</span></td></tr>
+  <tr><td>Agent Debate (2 new agents)</td><td>Devil's Advocate agent challenges findings; Judge agent resolves disagreements and computes an adjusted risk score. Full debate transcript stored and visualized in DebatePanel.</td><td><span class="badge b-green">Shipped</span></td></tr>
+  <tr><td>Guardrails + Hallucination Detection</td><td>LLM-as-judge validation layer checks agent outputs for hallucinations, score consistency, and factual grounding. Produces a trust score (0–1) displayed via TrustScoreBadge.</td><td><span class="badge b-green">Shipped</span></td></tr>
+  <tr><td>Conversational Chat</td><td>Post-analysis chat interface (ChatPanel) lets users ask follow-up questions about any completed analysis. Messages stored in <code>chat_messages</code> table with full context-aware AI responses.</td><td><span class="badge b-green">Shipped</span></td></tr>
+</table>
+
+<div class="grid2" style="margin-top:14px;">
+<div>
+<h3>Version 2.1 — Production Hardening</h3>
+<ul>
+  <li>Replace mock data with real Yahoo Finance + NewsAPI integrations</li>
+  <li>Migrate from SQLite → PostgreSQL (Render managed)</li>
+  <li>Migrate from local ChromaDB → Pinecone (persistent cloud vectors)</li>
+  <li>Add Celery + Redis task queue for async agent execution</li>
+  <li>Add LangSmith tracing for agent observability</li>
+</ul>
+</div>
+<div>
+<h3>Version 3.0 — Feature Expansion</h3>
+<ul>
+  <li>Portfolio mode — analyze multiple companies simultaneously</li>
+  <li>Email alerts when risk level crosses a threshold</li>
+  <li>Scheduled re-analysis (daily/weekly cron)</li>
+  <li>PDF report generation (export dashboard as PDF)</li>
+  <li>Multi-tenancy / organization support</li>
+  <li>SSO / OAuth2 with Google</li>
+  <li>Add Supply Chain Risk agent (6th agent)</li>
+</ul>
+</div>
+</div>
+
+<div class="info">
+  <strong>Priority upgrade for portfolio demos:</strong> Integrate yfinance (pip install yfinance) to replace mock stock data with real prices. This is a 1-hour change that makes demos significantly more impressive.
+</div>
+
+<!-- 11. GLOSSARY -->
+<h2 class="page-break">11. Glossary</h2>
+<table>
+  <tr><th>Term</th><th>Definition in context of this project</th></tr>
+  <tr><td><strong>Agent</strong></td><td>A LangGraph node that performs a specific analysis task (market/sentiment/financial/regulatory), using LangChain + GPT-4o to produce a risk score and analysis text.</td></tr>
+  <tr><td><strong>RAG</strong></td><td>Retrieval-Augmented Generation. Technique where relevant document chunks are retrieved from a vector database and injected into the LLM prompt as context.</td></tr>
+  <tr><td><strong>Vector Embedding</strong></td><td>A high-dimensional numerical representation of text that encodes semantic meaning. Generated by text-embedding-3-small. Similar meanings → similar vectors.</td></tr>
+  <tr><td><strong>Cosine Similarity</strong></td><td>Measure of similarity between two vectors based on the angle between them. Used by ChromaDB to rank chunks by relevance to a query.</td></tr>
+  <tr><td><strong>LangGraph State</strong></td><td>A TypedDict that flows through all agent nodes in the graph. Each node reads from and writes to the same state object.</td></tr>
+  <tr><td><strong>MCP</strong></td><td>Model Context Protocol. A standardized interface for AI models to request external data and tools via a declared tool manifest.</td></tr>
+  <tr><td><strong>JWT</strong></td><td>JSON Web Token. A signed, self-contained token encoding user identity and expiry. Stateless — no server-side session storage needed.</td></tr>
+  <tr><td><strong>VaR (Value at Risk)</strong></td><td>Statistical measure of potential loss. VaR(95%) = maximum expected daily loss with 95% confidence under normal market conditions.</td></tr>
+  <tr><td><strong>Beta</strong></td><td>Measure of a stock's volatility relative to the market. Beta > 1 = more volatile than market. Beta < 1 = less volatile.</td></tr>
+  <tr><td><strong>D/E Ratio</strong></td><td>Debt-to-Equity. Total debt ÷ total equity. Higher = more leveraged = higher financial risk.</td></tr>
+  <tr><td><strong>ROE</strong></td><td>Return on Equity = Net Income ÷ Total Equity. Measures how efficiently a company uses shareholders' capital.</td></tr>
+  <tr><td><strong>Current Ratio</strong></td><td>Current Assets ÷ Current Liabilities. Ratio > 1 = can cover short-term obligations. Ratio < 1 = potential liquidity risk.</td></tr>
+  <tr><td><strong>Basel III</strong></td><td>International banking regulations defining minimum capital requirements for financial institutions to withstand economic stress.</td></tr>
+  <tr><td><strong>AML/KYC</strong></td><td>Anti-Money Laundering / Know Your Customer. Regulatory requirements to verify customer identities and monitor transactions for suspicious activity.</td></tr>
+  <tr><td><strong>GDPR</strong></td><td>General Data Protection Regulation (EU). Rules governing personal data collection, storage, and processing. Violations carry massive fines.</td></tr>
+  <tr><td><strong>MiFID II</strong></td><td>Markets in Financial Instruments Directive II (EU). Regulates investment services and financial markets for transparency and investor protection.</td></tr>
+  <tr><td><strong>SOX 404</strong></td><td>Sarbanes-Oxley Act Section 404. Requires management to assess and report on the effectiveness of internal controls over financial reporting.</td></tr>
+  <tr><td><strong>ChromaDB Collection</strong></td><td>A named namespace within ChromaDB that holds a set of embeddings + documents + metadata. One collection per uploaded document in this project.</td></tr>
+  <tr><td><strong>Pydantic</strong></td><td>Python data validation library. Defines data shapes with Python type hints. FastAPI uses it to validate request/response bodies automatically.</td></tr>
+  <tr><td><strong>SQLAlchemy ORM</strong></td><td>Object-Relational Mapper. Maps Python classes to database tables. Allows writing database queries in Python instead of SQL.</td></tr>
+  <tr><td><strong>CORS</strong></td><td>Cross-Origin Resource Sharing. Browser security mechanism. The backend must explicitly allow the frontend's origin to make API calls.</td></tr>
+  <tr><td><strong>Zustand</strong></td><td>Minimal React state management library. Used for global auth state (user + JWT token) with localStorage persistence.</td></tr>
+  <tr><td><strong>SSE (Server-Sent Events)</strong></td><td>HTTP-based protocol for unidirectional server-to-client streaming. The server pushes events over a single long-lived connection. Used to stream agent progress during analysis in real time.</td></tr>
+  <tr><td><strong>Devil's Advocate Agent</strong></td><td>A debate agent that challenges the findings of the four analysis agents. It identifies weak reasoning, unsupported claims, and overly optimistic assessments, generating counter-arguments to stress-test the analysis.</td></tr>
+  <tr><td><strong>Judge Agent</strong></td><td>A debate-resolution agent that evaluates both the original analysis findings and the Devil's Advocate challenges. Produces a balanced verdict and computes an adjusted risk score reflecting the debate outcome.</td></tr>
+  <tr><td><strong>Guardrails</strong></td><td>A validation layer that checks agent outputs for quality, consistency, and factual grounding before they reach the user. Uses an LLM-as-judge pattern to detect hallucinations and scoring anomalies.</td></tr>
+  <tr><td><strong>Trust Score</strong></td><td>A confidence metric (0–1) produced by the guardrails agent. Reflects how well agent outputs pass hallucination checks, internal consistency validation, and factual grounding tests. Displayed as a badge in the UI.</td></tr>
+  <tr><td><strong>Hallucination Detection</strong></td><td>The process of identifying when an LLM generates claims not grounded in the provided data or context. The guardrails agent uses a second LLM call (LLM-as-judge) to verify that agent outputs are consistent with their input data.</td></tr>
+  <tr><td><strong>Chat Memory</strong></td><td>Persistent storage of conversational context in the <code>chat_messages</code> table. Enables multi-turn follow-up conversations about completed analyses, with the AI retaining awareness of prior questions and answers in the session.</td></tr>
+</table>
+
+<!-- 12. RESUME BULLETS -->
+<h2>12. Resume Bullet Points</h2>
+<p style="margin-bottom:12px;color:#475569;">Use these refined bullet points for your resume/portfolio. Each follows the PAR format (Problem → Action → Result):</p>
+
+<div class="card" style="background:#f0fdf4;border-color:#86efac;">
+  <div class="card-sub" style="color:#166534;">Primary Bullet (Lead with this)</div>
+  <p>Engineered an AI-driven Multi-Agent Financial Risk Assessment Platform using <strong>LangGraph, LangChain, GPT-4o, FastAPI, ChromaDB (Hybrid RAG), and MCP (FastMCP SDK)</strong>, orchestrating 6 specialized AI agents — 4 risk analyzers, a Devil's Advocate challenger, and a Judge arbiter — with <strong>LLM-as-judge guardrails for hallucination detection</strong>, <strong>SSE real-time streaming</strong>, multi-agent debate, and conversational follow-up chat.</p>
+</div>
+
+<div class="card" style="background:#eff6ff;border-color:#93c5fd;">
+  <div class="card-sub" style="color:#1e40af;">Advanced RAG + Guardrails Bullet</div>
+  <p>Implemented an advanced Retrieval-Augmented Generation pipeline combining <strong>ChromaDB dense vector search with BM25 sparse keyword retrieval (hybrid search)</strong> and an LLM batch re-ranker, with a <strong>guardrails validation layer (LLM-as-judge)</strong> that detects hallucinations and scores trust confidence — achieving higher recall on regulatory terminology (Basel III, IFRS 9, SOX) and verified factual grounding across all agent outputs.</p>
+</div>
+
+<div class="card" style="background:#fdf4ff;border-color:#d8b4fe;">
+  <div class="card-sub" style="color:#7e22ce;">Backend/Streaming/MCP Bullet</div>
+  <p>Built secure REST APIs with <strong>FastAPI, SQLAlchemy, SQLite, and JWT Authentication</strong>, including <strong>SSE streaming endpoints</strong> for real-time agent progress and a <strong>conversational chat API</strong> with persistent message history. Implemented a two-layer MCP architecture: an internal dispatcher routing all agent data fetches through 7 typed MCP tools, plus a standalone <strong>FastMCP SDK server</strong> connectable by Claude Desktop and any MCP-compatible client via stdio/SSE transport.</p>
+</div>
+
+<div class="card" style="background:#fff7ed;border-color:#fed7aa;">
+  <div class="card-sub" style="color:#9a3412;">Frontend/Analytics Bullet</div>
+  <p>Designed an interactive analytics dashboard with <strong>React + Vite, Tailwind CSS, Framer Motion, and Recharts</strong>, featuring <strong>live SSE streaming indicators</strong>, a <strong>multi-agent debate visualization panel</strong>, <strong>trust score badges</strong> with guardrails results, a <strong>conversational chat interface</strong> for follow-up questions, real-time risk scoring gauges, 4-chart analytics (area, line, bar, radar), and a ChromaDB PDF upload/query interface.</p>
+</div>
+
+<footer>
+  <span>BFSI Multi-Agent Financial Risk Assessment Platform</span>
+  <span>Document 3 of 3 — Complete Developer & Ops Reference</span>
+  <span>Open in browser → Ctrl+P → Save as PDF</span>
+</footer>
+
+</body>
+</html>

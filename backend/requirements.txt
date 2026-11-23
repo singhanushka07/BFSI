@@ -1,0 +1,33 @@
+fastapi==0.109.2
+uvicorn[standard]==0.27.1
+sqlalchemy==2.0.27
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.9
+pydantic>=2.12.0,<3.0.0
+pydantic-settings>=2.2.1
+python-dotenv==1.0.1
+
+# LangChain / LangGraph
+langchain==0.1.9
+langchain-openai==0.0.8
+langchain-community==0.0.24
+langgraph==0.0.26
+
+# ChromaDB RAG
+chromadb>=0.4.22
+pypdf==4.0.2
+tiktoken==0.6.0
+
+# Data & utilities
+numpy==1.26.4
+pandas==2.2.0
+httpx>=0.26.0
+aiofiles==23.2.1
+# PDF generation uses pure Python (no fpdf2 needed — see data/generate_sample_pdfs.py)
+
+# Hybrid RAG — BM25 sparse search alongside ChromaDB dense vectors
+rank-bm25==0.2.2
+
+# Official MCP SDK — proper Model Context Protocol server (FastMCP)
+mcp>=1.0.0

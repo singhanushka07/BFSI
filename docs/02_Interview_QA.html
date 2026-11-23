@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Document 2 — Interview Q&A | BFSI Risk Platform</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:#fff;color:#1e293b;line-height:1.6;font-size:13px;}
+  @page{size:A4;margin:18mm 16mm;}
+  @media print{.no-print{display:none;}.page-break{page-break-before:always;}body{font-size:11px;}}
+
+  .cover{background:linear-gradient(135deg,#020818 0%,#1a0a2e 40%,#0f2044 100%);color:#fff;padding:60px 48px 48px;min-height:220px;border-radius:8px;margin-bottom:32px;position:relative;overflow:hidden;}
+  .cover::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(139,92,246,0.15) 0%,transparent 70%);border-radius:50%;}
+  .cover-badge{display:inline-block;background:rgba(139,92,246,0.2);border:1px solid rgba(139,92,246,0.5);color:#c4b5fd;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.5px;margin-bottom:16px;}
+  .cover-title{font-size:26px;font-weight:800;line-height:1.2;margin-bottom:8px;}
+  .cover-subtitle{color:rgba(255,255,255,0.55);font-size:13px;}
+  .cover-doc-label{position:absolute;top:20px;right:24px;color:rgba(139,92,246,0.8);font-size:11px;font-weight:600;letter-spacing:1px;}
+
+  .toc-section{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px 20px;margin-bottom:24px;}
+  .toc-title{font-size:13px;font-weight:700;color:#0f172a;margin-bottom:10px;}
+  .toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+  .toc-item{font-size:11.5px;color:#475569;padding:2px 0;}
+  .toc-item span{color:#6366f1;font-weight:600;margin-right:4px;}
+
+  .category-header{font-size:15px;font-weight:700;color:#0f172a;border-left:3px solid #8b5cf6;padding-left:12px;margin:24px 0 14px;display:flex;align-items:center;gap:8px;}
+  .category-count{background:#f5f3ff;color:#6d28d9;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;}
+
+  .qa-block{border:1px solid #e2e8f0;border-radius:8px;margin-bottom:12px;overflow:hidden;break-inside:avoid;}
+  .qa-q{background:#f8fafc;padding:12px 16px;display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid #e2e8f0;}
+  .q-badge{background:#6366f1;color:#fff;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;}
+  .q-text{font-size:13px;font-weight:600;color:#0f172a;line-height:1.4;}
+  .qa-a{padding:12px 16px;}
+  .a-text{color:#334155;font-size:12px;line-height:1.6;}
+  .a-text strong{color:#0f172a;}
+  .a-text code{font-family:'JetBrains Mono',monospace;background:#f1f5f9;padding:1px 5px;border-radius:3px;font-size:11px;color:#0369a1;}
+
+  .key-point{background:#f0fdf4;border-left:3px solid #22c55e;padding:6px 10px;border-radius:0 4px 4px 0;margin:8px 0;font-size:11.5px;color:#166534;}
+  .warning-point{background:#fff7ed;border-left:3px solid #f97316;padding:6px 10px;border-radius:0 4px 4px 0;margin:8px 0;font-size:11.5px;color:#9a3412;}
+  .code-block{background:#0f172a;color:#e2e8f0;font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:10px 14px;border-radius:6px;margin:8px 0;line-height:1.5;}
+
+  .difficulty-badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:8px;}
+  .easy{background:#dcfce7;color:#166534;}
+  .medium{background:#fef9c3;color:#713f12;}
+  .hard{background:#fee2e2;color:#991b1b;}
+
+  .tips-box{background:linear-gradient(135deg,#fdf4ff,#f5f3ff);border:1px solid #ddd6fe;border-radius:8px;padding:16px;margin-top:24px;}
+  .tips-title{font-size:13px;font-weight:700;color:#4c1d95;margin-bottom:10px;}
+  .tip-item{display:flex;gap-8px;margin-bottom:6px;font-size:12px;color:#374151;}
+  .tip-num{color:#8b5cf6;font-weight:700;margin-right:6px;}
+
+  footer{margin-top:32px;padding-top:16px;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;color:#94a3b8;font-size:10px;}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-doc-label">DOCUMENT 2 OF 3</div>
+  <div class="cover-badge">Interview Preparation</div>
+  <div class="cover-title">Project Interview<br/>Questions & Answers</div>
+  <div class="cover-subtitle">BFSI Multi-Agent Financial Risk Assessment Platform<br/>49+ questions across 7 categories — from basics to architecture deep-dives</div>
+</div>
+
+<!-- TOC -->
+<div class="toc-section">
+  <div class="toc-title">Categories Covered (49 Questions Total)</div>
+  <div class="toc-grid">
+    <div class="toc-item"><span>A.</span> Project Overview & Motivation (6 Q)</div>
+    <div class="toc-item"><span>B.</span> AI / LangGraph / LangChain (12 Q)</div>
+    <div class="toc-item"><span>C.</span> RAG Pipeline & ChromaDB (8 Q)</div>
+    <div class="toc-item"><span>D.</span> MCP — Model Context Protocol (5 Q)</div>
+    <div class="toc-item"><span>E.</span> Backend / FastAPI / Security (9 Q)</div>
+    <div class="toc-item"><span>F.</span> Frontend / Dashboard / UI (4 Q)</div>
+    <div class="toc-item"><span>G.</span> Deployment & Scalability (5 Q)</div>
+  </div>
+</div>
+
+<!-- SECTION A -->
+<div class="category-header">A. Project Overview & Motivation <span class="category-count">6 Questions</span></div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">1</div><div class="q-text">Explain this project in 2 minutes — what it does, who it's for, and why it matters. <span class="difficulty-badge easy">Easy</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>What:</strong> A full-stack AI platform that automates financial risk assessment for corporations using 6 specialized AI agents (4 risk analysts + Devil's Advocate + Judge), a RAG pipeline, SSE real-time streaming, guardrails with hallucination detection, and a conversational risk chat — all delivered through a real-time analytics dashboard.<br/><br/>
+    <strong>Who:</strong> Financial analysts, risk managers, and compliance officers at BFSI institutions (banks, insurance companies, investment firms) who currently spend hours manually reading annual reports, news, and regulatory filings.<br/><br/>
+    <strong>Why it matters:</strong> Traditional risk analysis is manual, slow, and inconsistent across analysts. This platform reduces manual document analysis effort by ~80% by intelligently retrieving and reasoning over uploaded financial PDFs. It provides a unified, automated, reproducible risk score covering 4 dimensions simultaneously — with live SSE streaming of agent progress, GPT-validated guardrails to catch hallucinations, a multi-agent debate for adversarial verification, and an interactive chat to explore results conversationally.
+    <div class="key-point">Key talking point: "We went from a human reading 200-page annual reports to an AI agent querying the exact relevant paragraphs in seconds — streamed live, validated by guardrails, stress-tested by a Devil's Advocate agent, and explorable via chat."</div>
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">2</div><div class="q-text">What does BFSI stand for, and what are the specific risk domains you cover? <span class="difficulty-badge easy">Easy</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>BFSI = Banking, Financial Services, and Insurance.</strong><br/><br/>
+    The platform covers 4 risk domains, each handled by a dedicated AI agent:
+    <br/>• <strong>Market Risk</strong> — volatility, Value-at-Risk (VaR 95%), beta, P/E ratio, price history analysis
+    <br/>• <strong>Sentiment Risk</strong> — news headline analysis, positive/negative ratio, reputational risk, investor confidence
+    <br/>• <strong>Financial Report Risk</strong> — balance sheet analysis, liquidity (current ratio), leverage (D/E), profitability (ROE, ROA), powered by RAG over uploaded PDFs
+    <br/>• <strong>Regulatory Compliance Risk</strong> — checks against 8 frameworks: Basel III, AML/KYC, Dodd-Frank, GDPR, IFRS 9, SOX 404, MiFID II, PCI DSS
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">3</div><div class="q-text">What is the "~80% reduction in manual analysis" claim based on? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    The 80% figure refers specifically to the <strong>financial document analysis phase</strong> — not the entire risk workflow.<br/><br/>
+    Traditionally, an analyst reading a 200-page annual report to extract risk signals takes 3–5 hours. The RAG pipeline:
+    <br/>1. Chunks the PDF into ~150-word segments
+    <br/>2. Embeds and indexes all chunks in ChromaDB
+    <br/>3. At query time, semantically retrieves only the top-5 most relevant chunks (out of hundreds)
+    <br/>4. GPT-4o reasons over those ~750 words instead of 50,000
+    <br/><br/>
+    The analyst effort shifts from "read entire document" to "review AI-generated summary" — which is the 80% reduction. The remaining 20% is validation and judgment work that humans must still do.
+    <div class="key-point">Important: Be honest that this is a reasonable estimate for the document retrieval phase, not a measured production benchmark.</div>
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">4</div><div class="q-text">How is the overall risk score calculated? Walk me through the formula. <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    The overall risk score is a <strong>weighted average</strong> of the 4 agent scores, implemented in the LangGraph aggregator node:<br/><br/>
+    <div class="code-block">overall = (market × 0.30) + (sentiment × 0.20) + (financial × 0.30) + (compliance × 0.20)</div>
+    <strong>Weight rationale:</strong>
+    <br/>• Market (30%) and Financial (30%) are given equal highest weight — quantitative, directly measurable
+    <br/>• Compliance (20%) — binary pass/fail nature means high impact but less gradient
+    <br/>• Sentiment (20%) — valuable but noisier signal due to media bias<br/><br/>
+    Score ranges: 0–24 = LOW, 25–49 = MEDIUM, 50–74 = HIGH, 75–100 = CRITICAL
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">5</div><div class="q-text">What makes this different from a simple spreadsheet with financial ratios? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    Four key differentiators:
+    <br/>1. <strong>Natural language reasoning:</strong> GPT-4o doesn't just compute ratios — it contextualizes them ("a D/E of 2.8 is concerning for a company with declining revenue and regulatory pressure")
+    <br/>2. <strong>Document understanding (RAG):</strong> A spreadsheet can't read a PDF. The RAG pipeline extracts risk signals from unstructured documents that contain qualitative risk disclosures
+    <br/>3. <strong>Multi-dimensional, simultaneous:</strong> 4 agents run in parallel conceptually, covering aspects that require different domain expertise
+    <br/>4. <strong>Reproducibility and auditability:</strong> Every analysis is stored in SQLite with full agent output, enabling trend analysis and historical comparison
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">6</div><div class="q-text">What are the limitations of this platform? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    Being honest about limitations shows maturity:
+    <br/>• <strong>Mock data:</strong> Market data and news are simulated. A production version would need Yahoo Finance, Bloomberg, or NewsAPI integrations
+    <br/>• <strong>LLM hallucination (mitigated):</strong> GPT-4o can generate plausible-sounding but incorrect analysis. We now have guardrails (GPT-4o-mini validates each agent's output against MCP source data with confidence scores), but outputs still need human validation before trading decisions
+    <br/>• <strong>SQLite scalability:</strong> SQLite is single-writer and not suitable for concurrent multi-user production load — PostgreSQL would be needed at scale
+    <br/>• <strong>Render cold starts:</strong> Free tier Render services sleep after 15 min inactivity, causing 30–60s cold start delays for demos
+    <br/><br/><strong>Recently implemented features that addressed previous limitations:</strong>
+    <br/>• <strong>SSE real-time streaming:</strong> Agent results now stream live to the frontend via Server-Sent Events — no more waiting for all agents to finish
+    <br/>• <strong>Guardrails + hallucination detection:</strong> GPT-4o-mini validates each agent's output, returning confidence scores and flagged issues
+    <br/>• <strong>Conversational risk chat:</strong> Users can now chat with completed risk reports, asking follow-up questions with full analysis context
+    <div class="warning-point">Always mention limitations proactively — interviewers respect self-awareness over overselling. But also highlight what you've already addressed.</div>
+  </div></div>
+</div>
+
+<!-- SECTION B -->
+<div class="category-header page-break">B. AI / LangGraph / LangChain <span class="category-count">12 Questions</span></div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">7</div><div class="q-text">Explain LangGraph. How is it different from just calling 4 functions in sequence? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    LangGraph defines agents as <strong>nodes in a compiled directed graph</strong> with a shared typed state (<code>RiskState</code> TypedDict). Key differences from plain function calls:<br/><br/>
+    1. <strong>State typing:</strong> The state is strictly typed — each node knows exactly what fields it can read and write. Prevents accidental data corruption between agents.<br/>
+    2. <strong>Checkpointing:</strong> LangGraph can checkpoint state at each node, enabling pause-resume and debugging<br/>
+    3. <strong>Conditional routing:</strong> Edges can be conditional — e.g., "if market risk is CRITICAL, skip sentiment and go straight to regulatory"<br/>
+    4. <strong>Visualization:</strong> The graph can be rendered as a visual flow diagram for debugging<br/>
+    5. <strong>Built-in error handling:</strong> Node-level try/catch with state persistence means one agent failing doesn't crash the whole pipeline
+    <div class="code-block">workflow.set_entry_point("market_risk")
+workflow.add_edge("market_risk", "sentiment")
+workflow.add_edge("sentiment", "financial_report")
+workflow.add_edge("financial_report", "regulatory")
+workflow.add_edge("regulatory", "aggregator")
+workflow.add_edge("aggregator", "devils_advocate")
+workflow.add_edge("devils_advocate", "judge")
+workflow.add_edge("judge", END)</div>
+    <div class="key-point">The graph now has 7 nodes: 4 risk analysts → aggregator → Devil's Advocate (challenges findings) → Judge (produces adjusted scores and final verdict).</div>
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">8</div><div class="q-text">What is a LangChain chain? Show a code example from your project. <span class="difficulty-badge easy">Easy</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    A LangChain chain is a composable pipeline: <code>prompt | llm</code>. The pipe operator (<code>|</code>) connects a prompt template to an LLM, passing the formatted prompt through to get a response.<br/><br/>
+    <div class="code-block">prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are an expert quantitative financial risk analyst."),
+    ("human", "Analyze market risk for {company}. Volatility: {volatility}. VaR: {var_95}%.")
+])
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.3)
+chain = prompt | llm
+response = chain.invoke({"company": "TechCorp", "volatility": "0.32", "var_95": "4.2"})</div>
+    The <code>temperature=0.3</code> makes responses more deterministic and professional — important for financial analysis.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">9</div><div class="q-text">What does the LangGraph RiskState TypedDict contain and why is typing important? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <div class="code-block">class RiskState(TypedDict):
+    company: str
+    ticker: str
+    sector: str
+    collection_name: Optional[str]
+    market_result: Optional[dict]
+    sentiment_result: Optional[dict]
+    financial_result: Optional[dict]
+    regulatory_result: Optional[dict]
+    final_report: Optional[dict]
+    debate_result: Optional[dict]    # Devil's Advocate challenge output
+    judge_result: Optional[dict]     # Judge verdict with adjusted scores
+    error: Optional[str]</div>
+    <strong>Why typing matters:</strong> TypedDict enforces that every node receives and returns the same shape of state. If the market agent returns a malformed dict, Python type checking catches it at compile time. The <code>Optional</code> fields start as <code>None</code> and get populated as each agent runs, making it easy to see which agents have completed.<br/><br/>
+    <strong>New fields:</strong> <code>debate_result</code> holds the Devil's Advocate agent's challenges (identified weaknesses, contradictions, alternative interpretations). <code>judge_result</code> holds the Judge agent's verdict — which challenges are valid, adjusted risk scores, and overall confidence assessment.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">10</div><div class="q-text">Why temperature=0.3 for the LLM in financial agents? When would you use 0.0 or 1.0? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>temperature=0.3:</strong> Low enough to produce consistent, professional financial language without hallucination, but not zero — preserving natural variation in phrasing.<br/><br/>
+    <strong>temperature=0.0:</strong> Fully deterministic. Use for structured output extraction (JSON parsing, classification, entity extraction) where the same input must always return the same output.<br/><br/>
+    <strong>temperature=1.0:</strong> Creative, highly variable. Use for brainstorming, creative writing, marketing copy — never for financial analysis.<br/><br/>
+    In our agents: 0.3 is the standard BFSI recommendation for "professional but not robotic" analysis text.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">11</div><div class="q-text">How does the Market Risk Agent calculate VaR (Value at Risk)? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    The platform uses the <strong>parametric VaR (variance-covariance method)</strong>:<br/><br/>
+    <div class="code-block">returns = [(closes[i] - closes[i-1]) / closes[i-1] for i in range(1, len(closes))]
+mean_return = sum(returns) / len(returns)
+std_return = sqrt(sum((r - mean_return)**2 for r in returns) / len(returns))
+var_95 = abs(mean_return - 1.645 * std_return) * 100  # 95% confidence</div>
+    <strong>1.645 = Z-score for 95% confidence (one-tailed normal distribution).</strong><br/><br/>
+    This means: with 95% probability, the daily loss will not exceed VaR%. A VaR of 4.2% means "we are 95% confident daily loss won't exceed 4.2% of portfolio value."<br/><br/>
+    <strong>Limitation acknowledged:</strong> Parametric VaR assumes normally distributed returns — a known weakness for fat-tailed financial data. Historical simulation or Monte Carlo would be more robust in production.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">12</div><div class="q-text">What is the difference between LangGraph, LangChain, and LangSmith? <span class="difficulty-badge easy">Easy</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>LangChain:</strong> The base framework — prompt templates, LLM wrappers, output parsers, memory, tools, vector store integrations. The "building blocks."<br/>
+    <strong>LangGraph:</strong> Built on LangChain. Adds stateful, cyclical agent graphs. Enables multi-agent coordination, checkpointing, and conditional flows. The "orchestration layer."<br/>
+    <strong>LangSmith:</strong> Observability and tracing platform (SaaS). Not used in this project but would be added in production to trace every agent call, prompt, and token usage for debugging and cost monitoring.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">13</div><div class="q-text">Could you run the 4 agents in parallel instead of sequential? What are the trade-offs? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>Yes — LangGraph supports parallel node execution</strong> using <code>add_edge</code> from a fan-out node.<br/><br/>
+    <strong>Parallel pros:</strong> 4x faster total execution time (from ~20s to ~5s)<br/>
+    <strong>Parallel cons:</strong><br/>
+    1. The Financial Report Agent might benefit from the Market Agent's context (e.g., if volatility is extreme, financial risk weight should increase)<br/>
+    2. OpenAI rate limits — 4 concurrent GPT-4o calls may hit per-minute token limits<br/>
+    3. More complex error handling — a failure in one parallel branch needs to be isolated<br/><br/>
+    <strong>Current design choice:</strong> Sequential was chosen for simplicity and the ability to pass intermediate results between agents (market result informs the aggregator's weighting). Parallel would be a production upgrade for the 4 risk agents once rate limiting is managed.<br/><br/>
+    <strong>Important note on debate agents:</strong> The Devil's Advocate and Judge agents <em>must</em> run sequentially after the aggregator — they require the full aggregated risk report as input. The Devil's Advocate challenges findings based on the complete picture, and the Judge evaluates those challenges. This is inherently sequential: challenge → verdict. The 4 risk analysis agents could be parallelized, but the debate phase cannot.
+    <div class="key-point">Show you understand the trade-off, not just that parallel "is faster." Also explain why the debate phase is necessarily sequential.</div>
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">13a</div><div class="q-text">Explain the multi-agent debate mechanism — how do Devil's Advocate and Judge agents work? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    After the aggregator produces a unified risk report, the analysis enters the <strong>adversarial debate phase</strong> — two additional agents that stress-test the findings:<br/><br/>
+    <strong>Devil's Advocate Agent:</strong> Receives the full aggregated report and systematically challenges it:
+    <br/>• Identifies weaknesses in reasoning (e.g., "the market risk score relies heavily on short-term volatility but ignores sector-wide downtrend")
+    <br/>• Finds contradictions between agents (e.g., "sentiment is positive but financial ratios show deteriorating liquidity")
+    <br/>• Proposes alternative interpretations of the same data
+    <br/>• Highlights data gaps or over-reliance on single sources<br/><br/>
+    <strong>Judge Agent:</strong> Receives both the original report and the Devil's Advocate's challenges, then:
+    <br/>• Evaluates each challenge for validity — accepts, partially accepts, or dismisses
+    <br/>• Produces <strong>adjusted risk scores</strong> that account for valid challenges
+    <br/>• Generates a final verdict with a confidence level<br/><br/>
+    <strong>LangGraph flow:</strong> <code>market_risk → sentiment → financial_report → regulatory → aggregator → devils_advocate → judge → END</code><br/><br/>
+    <div class="code-block">debate_result = {
+    "challenges": [...],          # List of identified weaknesses
+    "contradictions": [...],      # Cross-agent inconsistencies
+    "alternative_views": [...]    # Different interpretations
+}
+judge_result = {
+    "verdict": {...},             # Per-challenge ruling
+    "adjusted_scores": {...},     # Modified risk scores
+    "confidence": 82,             # Overall confidence (0-100)
+    "reasoning": "..."            # Judge's rationale
+}</div>
+    <div class="key-point">The debate mechanism adds adversarial verification — similar to peer review in academia. It catches blind spots that a single-pass analysis misses.</div>
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">13b</div><div class="q-text">How does hallucination detection and guardrails work in the platform? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    Each agent's output is validated by a <strong>guardrails layer</strong> that uses GPT-4o-mini as an LLM-as-judge to detect hallucinations and verify factual consistency:<br/><br/>
+    <strong>How it works:</strong>
+    <br/>1. After each risk agent completes, its output is sent to a <strong>separate GPT-4o-mini validation call</strong> along with the original MCP source data (market data, news, financial metrics, regulatory rules)
+    <br/>2. The validator checks: Does the agent's analysis accurately reflect the source data? Are any claims fabricated or unsupported?
+    <br/>3. Returns a <strong>confidence score (0–100)</strong> per agent and a list of <strong>flagged issues</strong> (specific statements that could not be verified against source data)<br/><br/>
+    <strong>Trust score calculation:</strong> The overall trust score is a <strong>weighted average</strong> of individual agent confidence scores, using the same weights as the risk score formula (Market 30%, Sentiment 20%, Financial 30%, Compliance 20%).<br/><br/>
+    <strong>Design decisions:</strong>
+    <br/>• <strong>Separate LLM call per agent:</strong> Isolates validation — one agent's poor output doesn't contaminate another's validation
+    <br/>• <strong>GPT-4o-mini (not GPT-4o):</strong> Validation is a simpler classification task — mini is sufficient and 10x cheaper
+    <br/>• <strong>Source data comparison:</strong> The validator compares against the actual MCP tool responses (raw data), not just the agent's prompt — this is what makes it a true hallucination check rather than just a coherence check
+    <div class="warning-point">Guardrails reduce but don't eliminate hallucination risk. A trust score below 70 should trigger human review before decisions.</div>
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">14</div><div class="q-text">How would you add a 5th agent — e.g., a Supply Chain Risk Agent? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    LangGraph's graph architecture makes this straightforward:
+    <br/>1. Create <code>backend/agents/supply_chain.py</code> with <code>run_supply_chain_agent()</code>
+    <br/>2. Add <code>supply_chain_result: Optional[dict]</code> to the <code>RiskState</code> TypedDict
+    <br/>3. Add a node in <code>orchestrator.py</code>: <code>workflow.add_node("supply_chain", supply_chain_node)</code>
+    <br/>4. Wire the edge: after regulatory → supply_chain → aggregator
+    <br/>5. Update the aggregator's weighting formula to include the new score
+    <br/>6. Add the new agent to the frontend's agent display components<br/><br/>
+    The architecture is <strong>open for extension, closed for modification</strong> — existing agents don't need to change.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">15</div><div class="q-text">What is a prompt template and why use it instead of f-strings? <span class="difficulty-badge easy">Easy</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    A LangChain <code>ChatPromptTemplate</code> is a reusable, structured message template with typed variable placeholders.<br/><br/>
+    <strong>vs. f-strings:</strong>
+    <br/>• f-strings have no validation — a typo in a variable name fails at runtime
+    <br/>• ChatPromptTemplate validates that all required variables are passed at <code>.invoke()</code> time
+    <br/>• Templates enforce the system/human/assistant message structure required by chat models
+    <br/>• Templates are serializable — can be saved, loaded, versioned, and shared
+    <br/>• Template variables are clearly documented in the schema
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">16</div><div class="q-text">What would you use instead of mock data in a production version of this platform? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>Market data:</strong> yfinance (free) or Alpha Vantage (free tier) for real stock prices, or Bloomberg/Refinitiv APIs for enterprise<br/>
+    <strong>News/sentiment:</strong> NewsAPI (free tier) or Aylien News Intelligence, or Google News RSS with custom sentiment pipeline<br/>
+    <strong>Financial statements:</strong> SEC EDGAR API (free, public) for real 10-K/10-Q filings, or Intrinio/Quandl for structured financial data<br/>
+    <strong>Regulatory data:</strong> Fed/SEC/ESMA public APIs for real compliance bulletins and rule updates<br/><br/>
+    The current mock data layer (<code>data/mock_data.py</code>) is designed to be a drop-in replacement — each function signature mirrors what a real API wrapper would return.
+  </div></div>
+</div>
+
+<!-- SECTION C -->
+<div class="category-header page-break">C. RAG Pipeline & ChromaDB <span class="category-count">11 Questions</span></div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">17</div><div class="q-text">Explain the RAG pipeline end-to-end — from PDF upload to agent response. <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>Step 1 — Upload:</strong> User POSTs a PDF via <code>/api/rag/upload</code>. FastAPI saves it to the <code>uploads/</code> directory.<br/>
+    <strong>Step 2 — Parse:</strong> <code>pypdf</code> reads each page and extracts text. Pages are split into 150-word chunks with 20-word overlap.<br/>
+    <strong>Step 3 — Embed:</strong> OpenAI <code>text-embedding-3-small</code> converts each chunk to a 1536-dimensional vector.<br/>
+    <strong>Step 4 — Store:</strong> ChromaDB upserts the vectors + text + metadata (page number, source file) into a named collection.<br/>
+    <strong>Step 5 — Hybrid Retrieval:</strong> When the Financial Report Agent runs, it calls <code>hybrid_rag_search(collection, query)</code>. This runs BM25 keyword search AND ChromaDB dense vector search in parallel, normalizes both score sets to [0,1], and combines them (60% dense, 40% BM25).<br/>
+    <strong>Step 6 — Re-ranking:</strong> The top-8 hybrid results are sent to GPT-4o-mini in a single batch prompt to score each chunk 0-10 for relevance. Top-4 are selected.<br/>
+    <strong>Step 7 — Reason:</strong> GPT-4o receives re-ranked chunks as context and generates a risk assessment grounded in document evidence.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">17a</div><div class="q-text">What is hybrid search and why is it better than pure dense vector search for financial documents? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>Dense search</strong> (ChromaDB) works by embedding the query into a vector and finding the closest stored vectors using cosine similarity. It excels at semantic meaning — "what is the liquidity risk?" → finds contextually similar text.<br/><br/>
+    <strong>BM25 (sparse) search</strong> is a classic information retrieval algorithm that scores documents based on exact keyword frequency and inverse document frequency (IDF). It excels at precise terms.<br/><br/>
+    <strong>Why hybrid wins for finance:</strong> Financial regulatory documents are full of precise terminology — "Basel III", "CET1 ratio", "SOX Section 404", "IFRS 9 Stage 2", "AML/KYC". Dense search may embed these terms into a general financial vector space and miss exact matches. BM25 retrieves them precisely as keyword matches.<br/><br/>
+    <strong>Implementation:</strong> <code>rag/hybrid_search.py</code> uses <code>rank_bm25.BM25Okapi</code>. Both methods run on the same candidate set retrieved from ChromaDB, scores are min-max normalized, then linearly combined: <code>score = 0.6 × dense + 0.4 × bm25</code>. The alpha parameter (0.6) can be tuned per query type.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">17b</div><div class="q-text">Why use an LLM re-ranker instead of a cross-encoder model? What are the trade-offs? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>Cross-encoder models</strong> (like <code>cross-encoder/ms-marco-MiniLM-L-6-v2</code>) are the standard production re-ranker — they take (query, document) pairs and score relevance jointly, achieving high accuracy. However, they require ~80MB PyTorch model download and local inference overhead.<br/><br/>
+    <strong>LLM re-ranking</strong> sends all candidates to GPT-4o-mini in a single batch prompt: "Score each chunk 0-10 for relevance to this financial risk query." It returns a JSON score array, chunks are sorted, and top-4 are selected.<br/><br/>
+    <strong>Trade-offs:</strong><br/>
+    • <strong>Cross-encoder pro:</strong> Faster (local), no API cost per re-rank, deterministic<br/>
+    • <strong>LLM re-ranker pro:</strong> No extra packages/model downloads, leverages GPT's financial domain knowledge, works out of the box with existing OpenAI integration<br/>
+    • <strong>LLM re-ranker con:</strong> Adds one API call, non-deterministic, cost per run<br/><br/>
+    <strong>Design choice here:</strong> LLM re-ranking was chosen to avoid PyTorch dependency conflicts in the Python 3.12+ environment and to leverage GPT's deep understanding of financial regulatory language. Falls back to hybrid scores gracefully if the API call fails.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">18</div><div class="q-text">What is cosine similarity and why is it used for semantic search? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    Cosine similarity measures the <strong>angle between two vectors</strong>, not their magnitude:<br/><br/>
+    <div class="code-block">cos(θ) = (A · B) / (|A| × |B|)  → range: -1 (opposite) to 1 (identical)</div>
+    <strong>Why for semantic search:</strong> Text embeddings encode semantic meaning as directions in high-dimensional space. "Debt risk" and "financial leverage" will have similar directional vectors even though they share no words — cosine similarity captures this semantic closeness.<br/><br/>
+    <strong>vs. Euclidean distance:</strong> Euclidean distance is sensitive to vector magnitude (document length), which introduces noise. Cosine similarity normalizes for length — a short paragraph and a long paragraph about the same topic will still score high similarity.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">19</div><div class="q-text">Why chunk size 150 words with 20-word overlap? What happens with wrong chunk sizes? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>Too small (< 50 words):</strong> Chunks lose context — "revenue decreased" without knowing why. Embeddings become semantically thin. More API calls for embedding.<br/>
+    <strong>Too large (> 500 words):</strong> Chunks embed multiple topics, making the vector a blur. Retrieval becomes less precise — you get an entire section when you only needed one paragraph.<br/>
+    <strong>150 words:</strong> Fits one coherent "thought" — a paragraph about liquidity risk, or a disclosure about a specific regulatory matter. Produces focused, semantically sharp embeddings.<br/>
+    <strong>20-word overlap:</strong> Prevents context loss at boundaries. A sentence split across two chunks is captured by both, so the key fact is never lost. Standard practice is 10–20% overlap of chunk size.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">20</div><div class="q-text">What is the difference between PersistentClient and EphemeralClient in ChromaDB? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>EphemeralClient (in-memory):</strong> Data lives only in RAM. Fastest, but all vectors are lost on server restart. Good for testing only.<br/><br/>
+    <strong>PersistentClient (disk-backed):</strong> Vectors are written to a directory on disk (our <code>./chroma_db/</code> directory). Survives server restarts. Used in this project for production-like behavior.<br/><br/>
+    <strong>Production consideration:</strong> On Render's free tier, the disk is ephemeral between deploys. For true persistence, you would either use ChromaDB's cloud offering, mount a persistent volume (Render paid tier), or switch to a managed vector DB like Pinecone.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">21</div><div class="q-text">What is the difference between RAG and fine-tuning? Why RAG for this use case? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>Fine-tuning:</strong> Permanently updates model weights using training data. The model "memorizes" knowledge. Expensive, slow, requires labeled data, and the knowledge becomes stale as new filings are released.<br/><br/>
+    <strong>RAG (Retrieval-Augmented Generation):</strong> Model weights stay frozen. At inference time, relevant documents are retrieved and injected into the prompt as context.<br/><br/>
+    <strong>Why RAG for financial documents:</strong>
+    <br/>1. <strong>Dynamic knowledge:</strong> New annual reports, 10-K filings, and earnings documents are uploaded constantly. RAG updates instantly — fine-tuning would require retraining.
+    <br/>2. <strong>Source attribution:</strong> RAG can cite specific page numbers and document names. Fine-tuning cannot tell you where the model "learned" a fact.
+    <br/>3. <strong>Hallucination control:</strong> The model reasons over actual document text, not memorized generalizations.
+    <br/>4. <strong>Cost:</strong> Fine-tuning GPT-4o costs thousands of dollars. RAG costs cents per query.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">22</div><div class="q-text">What is the <code>upsert</code> operation in ChromaDB and why is it used instead of <code>add</code>? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <code>collection.add()</code> fails with an error if a document ID already exists.<br/>
+    <code>collection.upsert()</code> inserts if new, updates if the ID already exists — idempotent.<br/><br/>
+    In this project, each chunk gets a deterministic ID based on MD5 hash of <code>{collection_name}-{page}-{chunk_index}</code>. If the user re-uploads the same PDF, <code>upsert</code> silently overwrites existing chunks rather than throwing a duplicate key error. This makes the upload endpoint safe to call multiple times.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">23</div><div class="q-text">How would you evaluate RAG quality? What metrics would you track? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    Key RAG evaluation metrics:
+    <br/><strong>Retrieval quality:</strong>
+    <br/>• <strong>Recall@k:</strong> Are the relevant chunks in the top-k results?
+    <br/>• <strong>MRR (Mean Reciprocal Rank):</strong> How high up is the first relevant result?
+    <br/>• <strong>Cosine distance:</strong> Lower = more semantically similar (already returned by ChromaDB)
+    <br/><br/><strong>Generation quality (RAGAS framework):</strong>
+    <br/>• <strong>Faithfulness:</strong> Does the LLM answer only use retrieved context, or hallucinate?
+    <br/>• <strong>Answer Relevancy:</strong> Is the generated answer actually relevant to the question?
+    <br/>• <strong>Context Precision:</strong> How much of the retrieved context is actually useful?
+    <br/><br/>In production, I would integrate the RAGAS library and run automated evals against a golden dataset of question-answer pairs from known financial documents.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">24</div><div class="q-text">What is the embedding model used and why <code>text-embedding-3-small</code> vs <code>large</code>? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>text-embedding-3-small:</strong> 1536-dimensional vectors, $0.02/million tokens<br/>
+    <strong>text-embedding-3-large:</strong> 3072-dimensional vectors, $0.13/million tokens (6.5× more expensive)<br/><br/>
+    For financial text retrieval, <code>small</code> achieves 98%+ of <code>large</code>'s performance on most semantic search benchmarks. The quality difference is negligible for structured financial language (which is much simpler to embed than nuanced literary text). Cost savings are significant when indexing hundreds of PDF pages.
+  </div></div>
+</div>
+
+<!-- SECTION D -->
+<div class="category-header">D. MCP — Model Context Protocol <span class="category-count">7 Questions</span></div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">25</div><div class="q-text">What is MCP and why is it significant for AI applications in 2024–2025? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    MCP (Model Context Protocol) is an open protocol introduced by Anthropic in late 2024 that standardizes how AI models request external data and tools. It defines a structured interface: the model declares what tools it needs, and a server exposes them in a consistent format.<br/><br/>
+    <strong>Significance:</strong>
+    <br/>• <strong>Interoperability:</strong> Any MCP-compatible LLM (Claude, GPT, Gemini) can use any MCP-compatible tool server without custom integration code
+    <br/>• <strong>Security:</strong> Tools are declared with typed schemas — the model can only call tools it's been given, in defined ways
+    <br/>• <strong>Rapidly adopted:</strong> VS Code, Cursor, Claude Desktop all support MCP. It's becoming the "USB-C for AI tool integrations"
+    <br/>• <strong>Auditability:</strong> Every tool call goes through a defined protocol endpoint, making agent behavior inspectable and loggable
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">26</div><div class="q-text">What 7 tools does your MCP server expose? How do agents call them? <span class="difficulty-badge easy">Easy</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    The platform has <strong>two MCP implementations</strong>:<br/><br/>
+    <strong>1. Internal Dispatcher</strong> (<code>mcp_server/dispatcher.py</code>) — used by all 4 agents at runtime. Every data fetch goes through <code>call_mcp_tool(tool_name, params)</code> which logs tool name, params, result summary, and timestamp. Tools:<br/>
+    1. <code>get_stock_data</code> — OHLCV price data for a ticker<br/>
+    2. <code>get_financial_metrics</code> — D/E, ROE, current ratio, beta, P/E<br/>
+    3. <code>get_news_sentiment</code> — headlines with sentiment scores<br/>
+    4. <code>get_regulatory_rules</code> — Basel III, AML, SOX, GDPR frameworks<br/>
+    5. <code>hybrid_rag_search</code> — BM25 + dense vector search over ChromaDB<br/>
+    6. <code>rerank_chunks</code> — GPT batch relevance scoring of retrieved chunks<br/>
+    7. <code>rag_query</code> — standard dense-only ChromaDB search (fallback)<br/><br/>
+    <strong>2. FastMCP SDK Server</strong> (<code>mcp_server/mcp_sdk_server.py</code>) — uses the official <code>mcp</code> Python SDK to create a proper stdio/SSE MCP server. Runnable standalone: <code>python -m mcp_server.mcp_sdk_server</code>. Connectable by Claude Desktop, Cursor, or any MCP client via <code>claude_desktop_config.json</code>.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">26a</div><div class="q-text">What is FastMCP and how does it differ from the raw MCP SDK? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>Raw MCP SDK:</strong> Requires manually defining tool schemas, handling transport (stdio/SSE), and managing server lifecycle. Verbose boilerplate for each tool.<br/><br/>
+    <strong>FastMCP</strong> is the high-level wrapper in the <code>mcp</code> package that provides:<br/>
+    • <strong>Decorator-based registration:</strong> <code>@mcp.tool()</code> on any Python function — type hints and docstring become the tool schema automatically<br/>
+    • <strong>Zero transport boilerplate:</strong> <code>mcp.run()</code> handles stdio/SSE negotiation<br/>
+    • <strong>Automatic type coercion:</strong> JSON params are cast to function argument types<br/><br/>
+    <strong>Example from this project:</strong><br/>
+    <code>@mcp.tool()</code><br/>
+    <code>def hybrid_rag_search_tool(collection: str, query: str, n_results: int = 5) -&gt; dict:</code><br/>
+    <code>    """Hybrid BM25 + ChromaDB dense vector search over financial documents."""</code><br/>
+    FastMCP auto-generates the JSON schema from the type hints and docstring.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">27</div><div class="q-text">How is MCP different from OpenAI Function Calling / Tool Use? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>OpenAI Function Calling / Tool Use:</strong>
+    <br/>• Defined per-model-call: tools are specified in the API request payload
+    <br/>• Tightly coupled to one LLM provider's format
+    <br/>• The LLM decides which tool to call and the host app handles execution<br/><br/>
+    <strong>MCP:</strong>
+    <br/>• Defines a standalone server that any LLM can connect to
+    <br/>• Provider-agnostic: the same MCP server works with Claude, GPT-4o, Gemini
+    <br/>• Tools are "published" by the server and "discovered" by the client at connection time
+    <br/>• Cleaner separation: tool servers can be deployed independently<br/><br/>
+    Think of it as: Function Calling = tools baked into one API call. MCP = a separate microservice that any model can plug into.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">28</div><div class="q-text">How would you secure the MCP server in production? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    Current state: MCP endpoints are accessible to any authenticated user (JWT required via FastAPI dependency).<br/><br/>
+    Production hardening:
+    <br/>1. <strong>Agent-scoped tokens:</strong> Issue separate JWT tokens for agent-to-MCP communication, separate from user tokens
+    <br/>2. <strong>Rate limiting:</strong> Add per-tool rate limits (e.g., max 100 RAG queries/minute per user) via FastAPI middleware
+    <br/>3. <strong>Input validation:</strong> Strict Pydantic schemas on tool parameters to prevent injection
+    <br/>4. <strong>Audit logging:</strong> Log every MCP tool invocation with user ID, tool name, parameters, and response time
+    <br/>5. <strong>Network isolation:</strong> In production, the MCP server would be on a private network — only accessible from the backend service, not the public internet
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">29</div><div class="q-text">The <code>GET /mcp/tools</code> endpoint returns a manifest. Why is a manifest important? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    The tools manifest is the machine-readable catalog of what the MCP server can do. It enables:<br/><br/>
+    1. <strong>Tool discovery:</strong> An LLM or orchestrator can query the manifest at startup to know what tools are available — no hardcoding<br/>
+    2. <strong>Schema validation:</strong> The manifest defines parameter types, enabling the caller to validate requests before sending<br/>
+    3. <strong>Auto-documentation:</strong> Frontend dev tools can read the manifest and build a UI showing available tools<br/>
+    4. <strong>Versioning:</strong> Adding a <code>version</code> field to the manifest lets consumers know when the interface changes<br/><br/>
+    This is analogous to OpenAPI's <code>/openapi.json</code> schema — a self-describing interface contract.
+  </div></div>
+</div>
+
+<!-- SECTION E -->
+<div class="category-header page-break">E. Backend / FastAPI / Security <span class="category-count">9 Questions</span></div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">30</div><div class="q-text">Walk me through the JWT authentication flow — from registration to a protected API call. <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>Registration:</strong> POST <code>/api/auth/register</code> with email/username/password. Password hashed with bcrypt (10 rounds). User stored in SQLite. JWT issued immediately.<br/><br/>
+    <strong>Login:</strong> POST <code>/api/auth/login</code> with OAuth2PasswordRequestForm. Verify password with <code>passlib.verify()</code>. If valid, issue JWT: <code>{"sub": email, "exp": now + 30min}</code>, signed with HS256 using <code>SECRET_KEY</code>.<br/><br/>
+    <strong>Protected request:</strong> Frontend includes <code>Authorization: Bearer {token}</code> header. FastAPI's <code>OAuth2PasswordBearer</code> dependency extracts the token. <code>get_current_user</code> decodes it with <code>python-jose</code>, validates signature and expiry, queries SQLite for the user, returns it as a dependency injection.<br/><br/>
+    If token is invalid/expired → 401 Unauthorized. Frontend Axios interceptor catches 401 and redirects to <code>/login</code>.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">31</div><div class="q-text">Why bcrypt for password hashing? What makes it better than SHA-256? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>SHA-256 for passwords:</strong> Fast — designed for speed. An attacker can compute billions of SHA-256 hashes per second using a GPU. Once a database is breached, passwords crack in minutes.<br/><br/>
+    <strong>bcrypt:</strong>
+    <br/>• <strong>Adaptive cost factor:</strong> The 10 rounds (cost factor) makes it ~100ms per hash. That's a user-acceptable login delay, but catastrophic for attackers (10 million attempts would take ~10 million × 100ms)
+    <br/>• <strong>Built-in salt:</strong> bcrypt automatically generates a unique 22-character salt per password, making rainbow tables useless
+    <br/>• <strong>Adjustable:</strong> As hardware gets faster, you can increase the cost factor (10 → 12 → 14) to maintain security
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">32</div><div class="q-text">What are the SQLAlchemy models and their relationships? <span class="difficulty-badge easy">Easy</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    Three models:
+    <br/>• <strong>User:</strong> id, email (unique), username (unique), hashed_password, full_name, is_active, created_at. Has one-to-many relationship to <code>RiskAnalysis</code>.
+    <br/>• <strong>RiskAnalysis:</strong> id, user_id (FK), company_name, ticker, all 5 risk scores (float), risk_level, summary, and 4 JSON text fields for full agent output, created_at.
+    <br/>• <strong>UploadedDocument:</strong> id, user_id (FK), filename, company, doc_type, chroma_collection (maps to a ChromaDB collection name), pages (chunk count), uploaded_at.<br/><br/>
+    All user-scoped — every query filters by <code>user_id = current_user.id</code> for data isolation.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">33</div><div class="q-text">FastAPI uses Pydantic for validation. Give an example of how it protects this API. <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <div class="code-block">class AnalysisRequest(BaseModel):
+    company: str
+    ticker: str
+    sector: str = "Financial Services"
+    collection_name: Optional[str] = None</div>
+    If a client sends <code>{"company": null, "ticker": 12345}</code>:
+    <br/>• <code>company</code> is <code>str</code> — null raises <code>422 Unprocessable Entity</code> automatically
+    <br/>• <code>ticker</code> is <code>str</code> — integer 12345 is coerced to <code>"12345"</code> (Pydantic's default behavior for compatible types)<br/><br/>
+    The <code>EmailStr</code> type in <code>UserCreate</code> uses email-validator to reject <code>"notanemail"</code> before it ever reaches the database. This prevents garbage data, injection attempts, and type errors — all before a single line of business logic runs.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">34</div><div class="q-text">How does the Axios interceptor work for JWT injection? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <div class="code-block">api.interceptors.request.use((config) => {
+  const stored = localStorage.getItem('bfsi-auth')
+  if (stored) {
+    const { state } = JSON.parse(stored)
+    if (state?.token) {
+      config.headers.Authorization = `Bearer ${state.token}`
+    }
+  }
+  return config
+})</div>
+    Every Axios request goes through this interceptor before being sent. It reads the Zustand-persisted auth state from <code>localStorage</code>, extracts the token, and injects the <code>Authorization</code> header. This means no API call in the entire frontend ever needs to manually handle the token — it's global, automatic, and centralized.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">35</div><div class="q-text">What does the <code>check_same_thread=False</code> flag in SQLite config do? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    SQLite's default safety mechanism prevents the same connection from being used across multiple threads. FastAPI is async and runs request handlers in a thread pool, meaning multiple requests may try to use the same SQLAlchemy connection object.<br/><br/>
+    <code>connect_args={"check_same_thread": False}</code> disables this check, allowing the SQLAlchemy engine to safely share connections across threads via its built-in connection pool (which handles thread safety correctly internally).<br/><br/>
+    <strong>This is safe</strong> because SQLAlchemy's <code>SessionLocal</code> creates a new session per request via the <code>get_db()</code> dependency — sessions are not shared across requests.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">36</div><div class="q-text">What CORS configuration does the backend use and why? <span class="difficulty-badge easy">Easy</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <div class="code-block">app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "https://your-app.vercel.app"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)</div>
+    CORS (Cross-Origin Resource Sharing) allows the browser to make requests from the React frontend (port 5173 or Vercel domain) to the FastAPI backend (port 8000 or Render domain).<br/><br/>
+    <strong>allow_credentials=True</strong> is required because we send the JWT in an <code>Authorization</code> header.<br/>
+    <strong>Origins are configurable via env var</strong> (<code>CORS_ORIGINS</code>) so the same codebase works locally and in production without code changes.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">37</div><div class="q-text">What would you change to move from SQLite to PostgreSQL for production? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    Only 1 line change in <code>backend/.env</code>:<br/>
+    <div class="code-block">DATABASE_URL=postgresql://user:pass@host:5432/dbname</div>
+    SQLAlchemy is database-agnostic — all models, queries, and relationships work identically. You would also:
+    <br/>• Remove <code>connect_args={"check_same_thread": False}</code> (SQLite-specific)
+    <br/>• Add <code>psycopg2</code> or <code>asyncpg</code> to requirements.txt
+    <br/>• Use Alembic for schema migrations instead of <code>create_all()</code> on startup<br/><br/>
+    This is exactly why SQLAlchemy's ORM abstraction is valuable — it insulates the application code from the underlying database engine.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">37a</div><div class="q-text">How does the conversational risk chat work? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    After an analysis completes, users can <strong>chat with the risk report</strong> — asking follow-up questions, requesting explanations, or exploring specific findings conversationally.<br/><br/>
+    <strong>Architecture:</strong>
+    <br/>• <strong>Context injection:</strong> The full analysis result (all agent outputs, aggregated scores, debate results, guardrails data) is injected as the <strong>system prompt</strong> for the chat LLM call. This gives the model complete context without needing RAG over its own output.
+    <br/>• <strong>Rolling 20-message window:</strong> Chat history is stored in the database per analysis. To stay within token limits, only the most recent 20 messages are included in each LLM call. Older messages are still stored and viewable in the UI.
+    <br/>• <strong>Per-analysis isolation:</strong> Each analysis has its own chat thread — conversations about TechCorp's risk don't bleed into FinanceInc's chat.<br/><br/>
+    <strong>API endpoints:</strong>
+    <br/>• <code>POST /api/chat/message</code> — send a user message, receive AI response (with full analysis context)
+    <br/>• <code>GET /api/chat/history/{analysis_id}</code> — retrieve previous chat messages for an analysis<br/><br/>
+    <div class="code-block"># Simplified chat flow
+system_prompt = f"""You are a financial risk analyst assistant.
+Here is the complete risk analysis for {company}:
+{json.dumps(full_analysis_context)}
+Answer questions about this analysis."""
+
+messages = [system_msg] + last_20_messages + [user_question]
+response = llm.invoke(messages)</div>
+    <div class="key-point">The chat feature turns a static report into an interactive exploration tool — analysts can ask "why is the compliance score so high?" or "what would change if the D/E ratio improved?"</div>
+  </div></div>
+</div>
+
+<!-- SECTIONS F + G -->
+<div class="category-header page-break">F. Frontend / Dashboard / UI <span class="category-count">4 Questions</span></div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">38</div><div class="q-text">How does the architecture diagram on the landing page work technically? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    It's a <strong>hand-crafted SVG within a React component</strong> (<code>ArchitectureDiagram.jsx</code>).<br/><br/>
+    <strong>Nodes:</strong> Each technology node is an SVG <code>&lt;rect&gt;</code> + <code>&lt;text&gt;</code> group with pixel-precise coordinates stored in a <code>LAYOUT</code> object. Clicking a node sets <code>activeNode</code> state, which changes the rect's stroke color and width.<br/><br/>
+    <strong>Arrows:</strong> Custom <code>Arrow</code> components draw SVG <code>&lt;line&gt;</code> + <code>&lt;polygon&gt;</code> (arrowhead), with dashed lines for async/MCP calls and solid for synchronous calls.<br/><br/>
+    <strong>Animated RAG arrow:</strong> Uses Framer Motion's <code>initial/animate pathLength</code> on the ChromaDB connection to show a flowing animation.<br/><br/>
+    <strong>Why not React Flow/D3:</strong> Custom SVG gives pixel-perfect control with zero extra dependencies for this fixed layout.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">39</div><div class="q-text">How does the risk score gauge animation work? <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    The gauge uses an SVG circle with <strong>stroke-dasharray / stroke-dashoffset animation</strong>:<br/><br/>
+    <div class="code-block">circumference = 2 × π × 54 = 339.3px  (radius = 54)
+progress = (score / 100) × circumference
+
+&lt;motion.circle
+  strokeDasharray={circumference}
+  initial={{ strokeDashoffset: circumference }}  // hidden (0%)
+  animate={{ strokeDashoffset: circumference - progress }}  // fills to score%
+  transition={{ duration: 1.2, ease: 'easeOut' }}
+/&gt;</div>
+    At 73.2/100: <code>strokeDashoffset = 339.3 × (1 - 0.732) = 90.8px</code> — leaving 248.5px of visible stroke, which is 73.2% of the circle.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">40</div><div class="q-text">Why Zustand over Redux for state management? <span class="difficulty-badge easy">Easy</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    Redux requires: store configuration, reducers, actions, action creators, selectors, and often middleware (Redux Thunk or Saga). For a single auth state with 3 fields, this is massive overkill.<br/><br/>
+    Zustand: one 15-line file with <code>create()</code>. Access state with a hook: <code>const { token, setAuth } = useAuthStore()</code>. Built-in <code>persist</code> middleware for localStorage. No Provider wrapper needed.<br/><br/>
+    <strong>Rule of thumb:</strong> Use Zustand for 1–3 global states. Use Redux when you need time-travel debugging, complex derived state, or a large team working on shared state simultaneously.
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">41</div><div class="q-text">How does the ProtectedRoute component work in React Router v6? <span class="difficulty-badge easy">Easy</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <div class="code-block">function ProtectedRoute({ children }) {
+  const { token } = useAuthStore()
+  return token ? children : &lt;Navigate to="/login" replace /&gt;
+}</div>
+    It reads the token from Zustand. If present, renders the wrapped component (<code>Dashboard</code>). If absent, redirects to <code>/login</code> with the <code>replace</code> flag (so pressing Back doesn't re-trigger the guard).<br/><br/>
+    Wrapped as: <code>&lt;Route path="/dashboard" element={&lt;ProtectedRoute&gt;&lt;Dashboard /&gt;&lt;/ProtectedRoute&gt;} /&gt;</code>
+  </div></div>
+</div>
+
+<div class="category-header">G. Deployment & Scalability <span class="category-count">5 Questions</span></div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">42</div><div class="q-text">Walk me through deploying this to Render + Vercel from scratch. <span class="difficulty-badge medium">Medium</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>Backend → Render:</strong>
+    <br/>1. Push repo to GitHub
+    <br/>2. render.com → New Web Service → Connect repo → Root Dir: <code>backend</code>
+    <br/>3. Build: <code>pip install -r requirements.txt</code> | Start: <code>uvicorn main:app --host 0.0.0.0 --port $PORT</code>
+    <br/>4. Add env var <code>OPENAI_API_KEY</code> in Render's env settings
+    <br/>5. Render auto-deploys on every <code>git push</code><br/><br/>
+    <strong>Frontend → Vercel:</strong>
+    <br/>1. <code>cd frontend && vercel --prod</code> OR connect GitHub to Vercel dashboard
+    <br/>2. Set <code>VITE_API_URL = https://your-render-app.onrender.com/api</code> as env var
+    <br/>3. Vercel builds <code>npm run build</code> and deploys the <code>dist/</code> folder as a CDN-backed SPA
+    <br/>4. <code>vercel.json</code> rewrites all routes to <code>index.html</code> for client-side routing
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">43</div><div class="q-text">What are the bottlenecks at scale and how would you address them? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>Bottleneck 1 — LLM latency (20–30s per analysis):</strong> Addressed with SSE (Server-Sent Events) streaming — users now see results as each agent completes in real time, rather than waiting for all agents to finish. Further optimization: parallel agent execution could reduce total time from ~20s to ~5s.<br/>
+    <strong>Bottleneck 2 — OpenAI rate limits:</strong> Implement a queue (Celery + Redis) so analyses run in the background. Add retry with exponential backoff.<br/>
+    <strong>Bottleneck 3 — SQLite concurrency:</strong> SQLite is single-writer. Migrate to PostgreSQL (1-line env change with SQLAlchemy).<br/>
+    <strong>Bottleneck 4 — ChromaDB disk persistence on Render:</strong> Migrate to Pinecone or ChromaDB's hosted cloud for true persistence across deploys.<br/>
+    <strong>Bottleneck 5 — Cold starts on Render free tier:</strong> Upgrade to Render paid tier, or add a keep-alive ping (cron job hitting <code>/api/health</code> every 14 minutes).
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">44</div><div class="q-text">How does real-time streaming of agent results work in the platform? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    The platform uses <strong>Server-Sent Events (SSE)</strong> via FastAPI's <code>StreamingResponse</code> with <code>text/event-stream</code> content type. As each LangGraph agent completes, an event is pushed to the frontend in real time.<br/><br/>
+    <strong>Why POST-based SSE (not EventSource):</strong> The browser's native <code>EventSource</code> API only supports GET requests. Our analysis requires a POST body (company name, ticker, sector, collection). So the frontend uses <code>fetch()</code> with <code>ReadableStream</code> to consume the SSE stream from a POST endpoint.<br/><br/>
+    <strong>Event types streamed:</strong>
+    <br/>• <code>agent_start</code> — an agent has begun processing (triggers loading indicator)
+    <br/>• <code>agent_complete</code> — an agent finished, includes its result payload
+    <br/>• <code>guardrails_complete</code> — hallucination check finished for an agent, includes confidence score
+    <br/>• <code>debate_start</code> — debate phase (Devil's Advocate + Judge) has begun
+    <br/>• <code>analysis_complete</code> — final aggregated result with all scores<br/><br/>
+    <div class="code-block"># Backend (FastAPI)
+async def event_generator(request_data):
+    for agent_name in ["market_risk", "sentiment", "financial_report", "regulatory"]:
+        yield f"event: agent_start\ndata: {json.dumps({'agent': agent_name})}\n\n"
+        result = await run_agent(agent_name, state)
+        yield f"event: agent_complete\ndata: {json.dumps(result)}\n\n"
+    yield f"event: analysis_complete\ndata: {json.dumps(final)}\n\n"
+
+return StreamingResponse(event_generator(data), media_type="text/event-stream")</div>
+    <div class="code-block">// Frontend (React) — POST-based SSE with fetch + ReadableStream
+const response = await fetch('/api/analysis/stream', { method: 'POST', body: JSON.stringify(data) })
+const reader = response.body.getReader()
+const decoder = new TextDecoder()
+while (true) {
+    const { done, value } = await reader.read()
+    if (done) break
+    const text = decoder.decode(value)
+    // Parse SSE events and update UI progressively
+}</div>
+    <div class="key-point">SSE was chosen over WebSockets because the data flow is unidirectional (server → client). POST-based SSE via fetch() solves the EventSource GET-only limitation while keeping HTTP simplicity.</div>
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">44a</div><div class="q-text">How does SSE streaming work end-to-end in the platform? Walk through the full flow. <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>End-to-end SSE flow:</strong><br/><br/>
+    <strong>1. Frontend initiates:</strong> User clicks "Analyze" → React sends a <code>POST</code> request to <code>/api/analysis/stream</code> with <code>{company, ticker, sector, collection_name}</code>. Uses <code>fetch()</code> (not <code>EventSource</code>) because POST body is required.<br/><br/>
+    <strong>2. Backend creates generator:</strong> FastAPI endpoint returns a <code>StreamingResponse</code> wrapping an async generator. The generator walks the LangGraph nodes one by one, yielding SSE-formatted events after each step.<br/><br/>
+    <strong>3. Event format:</strong> Each event follows the SSE specification:
+    <div class="code-block">event: agent_complete
+data: {"agent": "market_risk", "score": 42, "level": "MEDIUM", ...}
+
+event: guardrails_complete
+data: {"agent": "market_risk", "confidence": 87, "issues": []}
+
+event: debate_start
+data: {"message": "Devil's Advocate analyzing findings..."}
+
+event: analysis_complete
+data: {"overall_score": 58.4, "risk_level": "HIGH", ...}</div>
+    <strong>4. Frontend reads stream:</strong> <code>response.body.getReader()</code> returns a <code>ReadableStream</code> reader. The React component reads chunks in a <code>while(true)</code> loop, decodes with <code>TextDecoder</code>, parses SSE event/data lines, and dispatches state updates per event type.<br/><br/>
+    <strong>5. Progressive UI update:</strong> Each <code>agent_complete</code> event triggers the corresponding agent card to animate from "loading" to "complete" with its score. The overall gauge updates incrementally. Guardrails confidence badges appear as each validation completes.<br/><br/>
+    <strong>Why not WebSockets:</strong> SSE is HTTP-native (works through proxies, load balancers, CDNs without upgrade negotiation), auto-reconnects on network hiccups, and the data flow is purely server → client. WebSockets would add bidirectional complexity for a unidirectional use case.
+    <div class="key-point">The POST-based SSE pattern (fetch + ReadableStream) is increasingly common in AI applications — it's the same approach used by ChatGPT's streaming responses.</div>
+  </div></div>
+</div>
+
+<div class="qa-block">
+  <div class="qa-q"><div class="q-badge">45</div><div class="q-text">How would you add multi-tenancy (multiple organizations) to this platform? <span class="difficulty-badge hard">Hard</span></div></div>
+  <div class="qa-a"><div class="a-text">
+    <strong>Database:</strong> Add an <code>Organization</code> model. Add <code>org_id</code> FK to <code>User</code>, <code>RiskAnalysis</code>, and <code>UploadedDocument</code>. All queries filter by <code>org_id</code>.<br/>
+    <strong>ChromaDB isolation:</strong> Collection naming already uses <code>user_{id}</code> prefix. Change to <code>org_{org_id}_{collection}</code> to isolate vector stores by organization.<br/>
+    <strong>Auth:</strong> Add organization roles (admin, analyst, viewer). Admins can see all org analyses; viewers can only read.<br/>
+    <strong>Billing:</strong> Track LLM token usage per organization in a <code>UsageLog</code> table. Implement tier-based rate limiting.<br/>
+    <strong>Subdomain routing:</strong> <code>acme.bfsiriskai.com</code> → lookup org by subdomain → inject org context into every request.
+  </div></div>
+</div>
+
+<!-- TIPS -->
+<div class="tips-box">
+  <div class="tips-title">Interview Tips for This Project</div>
+  <div class="tip-item"><span class="tip-num">1.</span> Always start with the business problem before the technology. Lead with "this saves analysts 80% time" before explaining LangGraph.</div>
+  <div class="tip-item"><span class="tip-num">2.</span> When asked about any technology, explain: what it is → what it does in this project → why it was chosen over alternatives.</div>
+  <div class="tip-item"><span class="tip-num">3.</span> Proactively mention limitations (mock data, SQLite, Render cold starts). It shows honesty and system design maturity.</div>
+  <div class="tip-item"><span class="tip-num">4.</span> For AI-specific questions, always mention the fallback: "If the LLM call fails, the agent falls back to computed metric-based analysis" — shows resilience thinking.</div>
+  <div class="tip-item"><span class="tip-num">5.</span> For "how would you improve this" questions, have 3 answers ready: (a) real financial APIs replacing mock data, (b) parallel agent execution (SSE streaming + agent debate are already implemented), (c) PostgreSQL + Pinecone for production persistence.</div>
+</div>
+
+<footer>
+  <span>BFSI Multi-Agent Financial Risk Assessment Platform</span>
+  <span>Document 2 of 3 — Interview Q&A (49 Questions)</span>
+  <span>Open in browser → Ctrl+P → Save as PDF</span>
+</footer>
+
+</body>
+</html>

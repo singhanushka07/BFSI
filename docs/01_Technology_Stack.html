@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Document 1 — Technology Stack | BFSI Risk Platform</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:#fff;color:#1e293b;line-height:1.6;font-size:13px;}
+
+  /* Print */
+  @page{size:A4;margin:18mm 16mm;}
+  @media print{
+    .no-print{display:none;}
+    .page-break{page-break-before:always;}
+    body{font-size:11px;}
+  }
+
+  /* Cover */
+  .cover{background:linear-gradient(135deg,#020818 0%,#0a1628 40%,#0f2044 100%);color:#fff;padding:60px 48px 48px;min-height:220px;border-radius:8px;margin-bottom:32px;position:relative;overflow:hidden;}
+  .cover::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(6,182,212,0.15) 0%,transparent 70%);border-radius:50%;}
+  .cover-badge{display:inline-block;background:rgba(6,182,212,0.2);border:1px solid rgba(6,182,212,0.5);color:#22d3ee;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.5px;margin-bottom:16px;}
+  .cover-title{font-size:26px;font-weight:800;line-height:1.2;margin-bottom:8px;}
+  .cover-subtitle{color:rgba(255,255,255,0.55);font-size:13px;}
+  .cover-doc-label{position:absolute;top:20px;right:24px;color:rgba(6,182,212,0.8);font-size:11px;font-weight:600;letter-spacing:1px;}
+
+  /* Section */
+  .section{margin-bottom:28px;}
+  .section-title{font-size:15px;font-weight:700;color:#0f172a;border-left:3px solid #06b6d4;padding-left:12px;margin-bottom:16px;letter-spacing:.2px;}
+  .section-intro{color:#475569;margin-bottom:16px;font-size:12.5px;}
+
+  /* Tech Card */
+  .tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .tech-card{border:1px solid #e2e8f0;border-radius:8px;padding:16px;background:#fafafa;break-inside:avoid;}
+  .tech-card:hover{border-color:#06b6d4;}
+  .tech-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+  .tech-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex-shrink:0;}
+  .tech-name{font-size:14px;font-weight:700;color:#0f172a;}
+  .tech-category{font-size:10px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.5px;}
+  .tech-section-label{font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.4px;margin:8px 0 4px;}
+  .tech-reason{color:#334155;font-size:12px;line-height:1.5;}
+  .tech-role{color:#0f766e;background:#f0fdf9;border:1px solid #99f6e4;border-radius:4px;padding:4px 8px;font-size:11px;margin-top:8px;display:inline-block;font-weight:500;}
+  .tech-version{color:#94a3b8;font-size:10px;font-family:'JetBrains Mono',monospace;}
+
+  /* Table */
+  table{width:100%;border-collapse:collapse;font-size:11.5px;}
+  th{background:#f1f5f9;color:#475569;font-weight:600;text-align:left;padding:8px 10px;border:1px solid #e2e8f0;}
+  td{padding:7px 10px;border:1px solid #e2e8f0;vertical-align:top;color:#334155;}
+  tr:nth-child(even) td{background:#fafafa;}
+
+  /* Stack layers */
+  .layer{display:flex;align-items:stretch;margin-bottom:10px;border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;}
+  .layer-label{background:#f1f5f9;padding:10px 14px;font-size:10px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.5px;writing-mode:vertical-rl;text-orientation:mixed;display:flex;align-items:center;justify-content:center;min-width:44px;}
+  .layer-items{padding:10px 14px;flex:1;}
+  .layer-chip{display:inline-block;background:#fff;border:1px solid #cbd5e1;border-radius:4px;padding:3px 8px;font-size:11px;color:#334155;font-weight:500;margin:2px;}
+
+  /* Badges */
+  .badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;}
+  .badge-core{background:#dbeafe;color:#1d4ed8;}
+  .badge-infra{background:#f0fdf4;color:#166534;}
+  .badge-ai{background:#fdf4ff;color:#7e22ce;}
+  .badge-security{background:#fff7ed;color:#9a3412;}
+
+  /* Comparison */
+  .comparison{border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;margin-top:8px;}
+  .comparison-header{background:#f8fafc;padding:8px 14px;font-size:11px;font-weight:600;color:#64748b;border-bottom:1px solid #e2e8f0;}
+  .comparison-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#e2e8f0;}
+  .comparison-cell{background:#fff;padding:8px 10px;font-size:11px;}
+  .comparison-cell:first-child{font-weight:600;color:#0f172a;}
+
+  footer{margin-top:32px;padding-top:16px;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;color:#94a3b8;font-size:10px;}
+  .highlight{background:#fffbeb;border-left:3px solid #f59e0b;padding:10px 14px;border-radius:0 6px 6px 0;margin:12px 0;font-size:12px;color:#92400e;}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-doc-label">DOCUMENT 1 OF 3</div>
+  <div class="cover-badge">Technical Reference</div>
+  <div class="cover-title">Technology Stack<br/>Deep Dive</div>
+  <div class="cover-subtitle">BFSI Multi-Agent Financial Risk Assessment Platform<br/>Every technology, its role, and the reasoning behind choosing it</div>
+</div>
+
+<!-- INTRO -->
+<div class="section">
+  <p class="section-intro">This document covers all <strong>18+ production technologies</strong> used in the BFSI Multi-Agent Financial Risk Assessment Platform. For each technology, it explains: what it is, what specific role it plays in this project, why it was chosen over alternatives, and how it connects to the rest of the stack.</p>
+
+  <div class="highlight">
+    <strong>Project Recap:</strong> An AI-driven platform that orchestrates <strong>6 specialized LangGraph agents</strong> (4 domain analysts + Devil's Advocate + Judge) to automate corporate financial risk analysis — covering market exposure, sentiment, financial report analysis (via Hybrid RAG + LLM Re-ranking), and regulatory compliance, followed by a multi-agent debate for validated conclusions. Features <strong>SSE real-time streaming</strong> of agent results, <strong>guardrails with hallucination detection</strong> (LLM-as-Judge trust scoring), and <strong>conversational risk chat</strong> for interactive follow-up. MCP tools dispatched via both internal dispatcher and an official FastMCP SDK server. Secured with JWT auth, backed by SQLite, deployed on Render + Vercel.
+  </div>
+</div>
+
+<!-- STACK LAYER DIAGRAM -->
+<div class="section">
+  <div class="section-title">Stack Architecture — Layer View</div>
+  <div class="layer">
+    <div class="layer-label">Frontend</div>
+    <div class="layer-items">
+      <span class="layer-chip">React 18</span>
+      <span class="layer-chip">Vite</span>
+      <span class="layer-chip">Tailwind CSS</span>
+      <span class="layer-chip">Framer Motion</span>
+      <span class="layer-chip">Recharts</span>
+      <span class="layer-chip">Zustand</span>
+      <span class="layer-chip">Axios</span>
+    </div>
+  </div>
+  <div class="layer">
+    <div class="layer-label">API</div>
+    <div class="layer-items">
+      <span class="layer-chip">FastAPI</span>
+      <span class="layer-chip">JWT Authentication</span>
+      <span class="layer-chip">MCP Server</span>
+      <span class="layer-chip">CORS Middleware</span>
+      <span class="layer-chip" style="background:#fff7ed;border-color:#fed7aa;color:#9a3412;">SSE Streaming</span>
+      <span class="layer-chip" style="background:#f0fdf4;border-color:#bbf7d0;color:#166534;">Chat Endpoints</span>
+    </div>
+  </div>
+  <div class="layer">
+    <div class="layer-label" style="background:#fdf4ff;">AI / Agents</div>
+    <div class="layer-items">
+      <span class="layer-chip">LangGraph (Orchestrator)</span>
+      <span class="layer-chip">LangChain (Chains)</span>
+      <span class="layer-chip">GPT-4o (LLM)</span>
+      <span class="layer-chip">6 Specialized Agents (incl. Devil's Advocate + Judge)</span>
+    </div>
+  </div>
+  <div class="layer">
+    <div class="layer-label" style="background:#fff7ed;">Guardrails</div>
+    <div class="layer-items">
+      <span class="layer-chip" style="background:#fff7ed;border-color:#fed7aa;color:#9a3412;">LLM-as-Judge Validation</span>
+      <span class="layer-chip" style="background:#fff7ed;border-color:#fed7aa;color:#9a3412;">Trust Score</span>
+      <span class="layer-chip" style="background:#fff7ed;border-color:#fed7aa;color:#9a3412;">Hallucination Detection</span>
+    </div>
+  </div>
+  <div class="layer">
+    <div class="layer-label" style="background:#fdf4ff;">RAG</div>
+    <div class="layer-items">
+      <span class="layer-chip">ChromaDB (Vector Store)</span>
+      <span class="layer-chip">text-embedding-3-small</span>
+      <span class="layer-chip">pypdf (PDF Parser)</span>
+      <span class="layer-chip" style="background:#fff7ed;border-color:#fed7aa;color:#9a3412;">rank-bm25 (Hybrid Search)</span>
+      <span class="layer-chip" style="background:#fdf4ff;border-color:#e9d5ff;color:#7e22ce;">LLM Re-ranker (GPT batch)</span>
+    </div>
+  </div>
+  <div class="layer">
+    <div class="layer-label" style="background:#f0fdf4;">MCP</div>
+    <div class="layer-items">
+      <span class="layer-chip">Internal MCP Dispatcher</span>
+      <span class="layer-chip" style="background:#f0fdf4;border-color:#bbf7d0;color:#166534;">FastMCP SDK Server (stdio/SSE)</span>
+      <span class="layer-chip">7 MCP Tools</span>
+    </div>
+  </div>
+  <div class="layer">
+    <div class="layer-label">Data</div>
+    <div class="layer-items">
+      <span class="layer-chip">SQLAlchemy ORM</span>
+      <span class="layer-chip">SQLite Database</span>
+      <span class="layer-chip">passlib + bcrypt</span>
+    </div>
+  </div>
+  <div class="layer">
+    <div class="layer-label">Deploy</div>
+    <div class="layer-items">
+      <span class="layer-chip">Render (backend)</span>
+      <span class="layer-chip">Vercel (frontend)</span>
+    </div>
+  </div>
+</div>
+
+<!-- TECH CARDS: AI LAYER -->
+<div class="section">
+  <div class="section-title">AI & Orchestration Layer</div>
+  <div class="tech-grid">
+
+    <div class="tech-card">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#e0f7fa;color:#006064;">⬡</div>
+        <div>
+          <div class="tech-name">LangGraph</div>
+          <div class="tech-category">Agent Orchestration <span class="badge badge-ai">AI Core</span></div>
+        </div>
+      </div>
+      <div class="tech-section-label">What it is</div>
+      <div class="tech-reason">A graph-based agent orchestration library from LangChain. Defines agents as nodes in a stateful directed graph, with typed state passing between nodes.</div>
+      <div class="tech-section-label">Role in this project</div>
+      <div class="tech-reason">The central orchestrator. Defines a <code>RiskState</code> TypedDict and routes it through a 7-node sequential flow: <code>market_risk → sentiment → financial_report → regulatory → aggregator → devils_advocate → judge → END</code>. The Devil's Advocate node challenges findings; the Judge node resolves disagreements and produces adjusted scores.</div>
+      <div class="tech-section-label">Why chosen over alternatives</div>
+      <div class="tech-reason">vs. plain Python loops: LangGraph provides checkpointing, error handling, and state visibility. vs. AutoGen: LangGraph integrates natively with LangChain. vs. CrewAI: more fine-grained control over state transitions.</div>
+      <div class="tech-role">langgraph==0.0.26</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#e8f5e9;color:#1b5e20;">⛓</div>
+        <div>
+          <div class="tech-name">LangChain</div>
+          <div class="tech-category">LLM Framework <span class="badge badge-ai">AI Core</span></div>
+        </div>
+      </div>
+      <div class="tech-section-label">What it is</div>
+      <div class="tech-reason">A composable framework for building LLM-powered applications. Provides ChatPromptTemplate, output parsers, chains, embeddings, and vector store integrations.</div>
+      <div class="tech-section-label">Role in this project</div>
+      <div class="tech-reason">Powers the prompt engineering inside each agent. Every agent uses a <code>ChatPromptTemplate</code> and a LangChain chain (<code>prompt | llm</code>) to generate its analysis text.</div>
+      <div class="tech-section-label">Why chosen</div>
+      <div class="tech-reason">LangChain is the de-facto standard for LLM chains. Its prompt templates and chain composition reduce boilerplate significantly. LangGraph is built on top of LangChain, making integration seamless.</div>
+      <div class="tech-role">langchain==0.1.9, langchain-openai==0.0.8</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#f3e8ff;color:#4a044e;">◎</div>
+        <div>
+          <div class="tech-name">GPT-4o (OpenAI)</div>
+          <div class="tech-category">Large Language Model <span class="badge badge-ai">AI Core</span></div>
+        </div>
+      </div>
+      <div class="tech-section-label">What it is</div>
+      <div class="tech-reason">OpenAI's flagship multimodal LLM. Used via the ChatOpenAI LangChain wrapper with <code>model="gpt-4o-mini"</code> for cost-effective agent reasoning.</div>
+      <div class="tech-section-label">Role in this project</div>
+      <div class="tech-reason">The reasoning engine for all 4 agents. Receives structured financial prompts and returns professional risk assessments in natural language. Also powers text embeddings via <code>text-embedding-3-small</code>.</div>
+      <div class="tech-section-label">Why chosen</div>
+      <div class="tech-reason">Superior financial domain reasoning compared to open-source alternatives. GPT-4o-mini offers the best cost/quality ratio for agent workloads. OpenAI's embedding model integrates directly with ChromaDB.</div>
+      <div class="tech-role">langchain-openai, model: gpt-4o-mini</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#fce4ec;color:#880e4f;">◈</div>
+        <div>
+          <div class="tech-name">ChromaDB</div>
+          <div class="tech-category">Vector Database — RAG <span class="badge badge-ai">AI Core</span></div>
+        </div>
+      </div>
+      <div class="tech-section-label">What it is</div>
+      <div class="tech-reason">An open-source, persistent vector database. Stores text embeddings and enables semantic similarity search (cosine similarity) over large document corpora.</div>
+      <div class="tech-section-label">Role in this project</div>
+      <div class="tech-reason">The heart of the RAG pipeline. Financial PDFs are chunked (150 words), embedded, and stored in ChromaDB collections. The Financial Report Agent queries it at analysis time, retrieving the top-k most relevant passages for GPT-4o to reason over.</div>
+      <div class="tech-section-label">Why chosen</div>
+      <div class="tech-reason">vs. Pinecone: ChromaDB is fully local/free, no API key needed. vs. FAISS: ChromaDB adds persistence and metadata filtering. vs. Weaviate: lighter weight, easier to run locally and on Render.</div>
+      <div class="tech-role">chromadb==0.4.22, PersistentClient</div>
+    </div>
+
+  </div>
+
+  <!-- Hybrid Search card -->
+  <div class="tech-card" style="max-width:100%;margin-top:14px;">
+    <div class="tech-header">
+      <div class="tech-icon" style="background:#fff3e0;color:#e65100;">⊕</div>
+      <div>
+        <div class="tech-name">Hybrid Search — rank-bm25 + ChromaDB Dense</div>
+        <div class="tech-category">Advanced RAG Retrieval <span class="badge badge-ai">AI Core</span></div>
+      </div>
+    </div>
+    <table style="margin-top:8px;">
+      <tr><th>Aspect</th><th>Detail</th></tr>
+      <tr><td><strong>What it is</strong></td><td><strong>BM25</strong> (Best Match 25) is a classical sparse keyword retrieval algorithm. Combined with ChromaDB dense vector search, it forms a <em>hybrid retrieval system</em> — each query runs both methods in parallel and scores are weighted-combined (60% dense, 40% BM25).</td></tr>
+      <tr><td><strong>Role here</strong></td><td><code>rag/hybrid_search.py</code> — retrieves up to 20 candidate chunks using both methods, normalizes scores to [0,1], combines with configurable alpha weight, and returns top-N with per-chunk <code>hybrid_score</code>, <code>dense_score</code>, and <code>bm25_score</code> metadata visible in the UI.</td></tr>
+      <tr><td><strong>Why hybrid?</strong></td><td>Dense search captures semantic meaning ("describe the liquidity risk"). BM25 excels at precise regulatory terms: "Basel III", "SOX 404", "IFRS 9", "CET1", "NSFR" — financial documents are full of exact terminology that semantic search can miss. Hybrid outperforms either alone by ~15-20% recall@5 on regulatory corpora.</td></tr>
+      <tr><td><strong>Library</strong></td><td><code>rank-bm25==0.2.2</code> — pure Python, no native extensions, works everywhere. Implements BM25Okapi with IDF smoothing.</td></tr>
+    </table>
+  </div>
+
+  <!-- LLM Re-ranker card -->
+  <div class="tech-card" style="max-width:100%;margin-top:14px;">
+    <div class="tech-header">
+      <div class="tech-icon" style="background:#f3e8ff;color:#7e22ce;">↕</div>
+      <div>
+        <div class="tech-name">LLM Batch Re-ranker</div>
+        <div class="tech-category">RAG Post-Retrieval <span class="badge badge-ai">AI Core</span></div>
+      </div>
+    </div>
+    <table style="margin-top:8px;">
+      <tr><th>Aspect</th><th>Detail</th></tr>
+      <tr><td><strong>What it is</strong></td><td>A <em>re-ranking</em> step that runs after initial retrieval to reorder candidates by true relevance. Unlike cross-encoder models (which require large model downloads), this implementation sends all candidates to GPT-4o-mini in a <strong>single batch prompt</strong>, asking it to score each chunk 0-10 for relevance to the financial risk query.</td></tr>
+      <tr><td><strong>Role here</strong></td><td><code>rag/reranker.py</code> — receives up to 10 hybrid-retrieved chunks, formats them into a numbered batch prompt, calls GPT once to score all, parses the JSON score array, and returns the top-k sorted by score. Each chunk gains a <code>rerank_score</code> (0.0–1.0) visible in the UI alongside hybrid scores.</td></tr>
+      <tr><td><strong>Why LLM re-ranking?</strong></td><td>Cross-encoder models (e.g. <code>cross-encoder/ms-marco-MiniLM</code>) require ~80MB model download and PyTorch. LLM-based re-ranking uses existing GPT integration with a single API call — production-effective for financial documents where GPT already understands domain semantics. Falls back gracefully to hybrid scores if the API is unavailable.</td></tr>
+      <tr><td><strong>Pipeline position</strong></td><td>Hybrid retrieval → Re-rank → Top-4 → GPT-4o analysis. Two-stage retrieval then re-ranking is a standard production RAG pattern that significantly improves final answer quality.</td></tr>
+    </table>
+  </div>
+
+  <!-- Guardrails + Hallucination Detection card -->
+  <div class="tech-card" style="max-width:100%;margin-top:14px;">
+    <div class="tech-header">
+      <div class="tech-icon" style="background:#fff7ed;color:#9a3412;">⛨</div>
+      <div>
+        <div class="tech-name">Guardrails + Hallucination Detection</div>
+        <div class="tech-category">LLM-as-Judge Validation <span class="badge badge-ai">AI Core</span></div>
+      </div>
+    </div>
+    <table style="margin-top:8px;">
+      <tr><th>Aspect</th><th>Detail</th></tr>
+      <tr><td><strong>What it is</strong></td><td>A post-analysis validation layer that uses <strong>GPT-4o-mini as a judge</strong> to verify each agent's output against the original MCP source data. Returns per-agent confidence scores (0-100) and flags any claims not supported by the source material.</td></tr>
+      <tr><td><strong>Role here</strong></td><td>After each agent produces its analysis, the guardrails module cross-references the output against the raw MCP tool data. It identifies <em>hallucinated</em> or unsupported claims, computes a per-agent confidence score, and derives an <strong>overall trust score</strong> for the entire analysis run. Flagged issues are surfaced in the UI.</td></tr>
+      <tr><td><strong>Why LLM-as-Judge?</strong></td><td>Rule-based validation cannot catch semantic hallucinations (e.g., an agent inventing a financial ratio not present in the source). GPT-4o-mini is cost-effective for judge tasks and already available in the stack. The pattern is a recognized best practice for production LLM applications where factual grounding matters.</td></tr>
+      <tr><td><strong>Output</strong></td><td>Per-agent: <code>confidence_score</code> (0-100), <code>flagged_issues[]</code>. Overall: <code>trust_score</code> (weighted average). All visible in the frontend results panel.</td></tr>
+    </table>
+  </div>
+
+  <!-- Multi-Agent Debate card -->
+  <div class="tech-card" style="max-width:100%;margin-top:14px;">
+    <div class="tech-header">
+      <div class="tech-icon" style="background:#fdf4ff;color:#7e22ce;">⚔</div>
+      <div>
+        <div class="tech-name">Multi-Agent Debate</div>
+        <div class="tech-category">Devil's Advocate + Judge Pattern <span class="badge badge-ai">AI Core</span></div>
+      </div>
+    </div>
+    <table style="margin-top:8px;">
+      <tr><th>Aspect</th><th>Detail</th></tr>
+      <tr><td><strong>What it is</strong></td><td>A two-stage adversarial review pattern added after the initial 4-agent + aggregator pipeline. A <strong>Devil's Advocate</strong> agent challenges the aggregated findings, then a <strong>Judge</strong> agent evaluates both sides and produces adjusted final scores.</td></tr>
+      <tr><td><strong>Role here</strong></td><td>Extends the LangGraph flow with two additional nodes: <code>devils_advocate</code> (identifies weaknesses, counter-arguments, and overlooked risks) and <code>judge</code> (weighs original findings against challenges, resolves disagreements, outputs adjusted risk scores with reasoning). Sequential flow: aggregator → devils_advocate → judge → END.</td></tr>
+      <tr><td><strong>Why debate?</strong></td><td>Single-pass LLM analysis is prone to confirmation bias and anchoring. The adversarial pattern forces the system to stress-test its own conclusions. Research shows multi-agent debate improves factual accuracy and reduces overconfident risk assessments — critical in financial contexts.</td></tr>
+      <tr><td><strong>Implementation</strong></td><td>Both agents are LangGraph nodes sharing <code>RiskState</code>. The Devil's Advocate receives all agent outputs + aggregated scores. The Judge receives all of the above plus the Devil's Advocate challenges. Uses LangGraph's sequential flow with no conditional branching.</td></tr>
+    </table>
+  </div>
+
+  <!-- Conversational Risk Chat card -->
+  <div class="tech-card" style="max-width:100%;margin-top:14px;">
+    <div class="tech-header">
+      <div class="tech-icon" style="background:#e0f2fe;color:#0369a1;">💬</div>
+      <div>
+        <div class="tech-name">Conversational Risk Chat</div>
+        <div class="tech-category">Context-Injected Chat with Memory <span class="badge badge-ai">AI Core</span></div>
+      </div>
+    </div>
+    <table style="margin-top:8px;">
+      <tr><th>Aspect</th><th>Detail</th></tr>
+      <tr><td><strong>What it is</strong></td><td>A post-analysis conversational interface that lets users ask follow-up questions about the risk report. Powered by <strong>GPT-4o-mini</strong> with the full analysis context (all agent outputs, scores, debate results) injected as system context, plus rolling chat history for multi-turn conversations.</td></tr>
+      <tr><td><strong>Role here</strong></td><td>After an analysis completes, users can chat naturally: "Why is the market risk score so high?", "Compare regulatory findings with sentiment", "What would change if interest rates dropped 50bp?". The LLM answers grounded in the actual analysis data, not generic knowledge.</td></tr>
+      <tr><td><strong>Endpoints</strong></td><td><code>POST /api/chat/message</code> — send a message with analysis ID, returns AI response. <code>GET /api/chat/history/{id}</code> — retrieve full conversation history for an analysis session.</td></tr>
+      <tr><td><strong>Why important?</strong></td><td>Static risk reports leave analysts with unanswered questions. Conversational access transforms a one-shot report into an interactive advisory session. Chat history persistence enables audit trails and team knowledge sharing.</td></tr>
+    </table>
+  </div>
+
+</div>
+</div>
+
+<!-- MCP -->
+<div class="section">
+  <div class="section-title">Model Context Protocol (MCP)</div>
+  <div class="tech-card" style="max-width:100%;">
+    <div class="tech-header">
+      <div class="tech-icon" style="background:#fff8e1;color:#e65100;">⬡</div>
+      <div>
+        <div class="tech-name">MCP — Model Context Protocol</div>
+        <div class="tech-category">Tool-Serving Layer <span class="badge badge-infra">Infrastructure</span></div>
+      </div>
+    </div>
+    <table style="margin-top:8px;">
+      <tr><th>Aspect</th><th>Detail</th></tr>
+      <tr><td><strong>What it is</strong></td><td>A protocol (introduced by Anthropic) that standardizes how AI models request and receive tool outputs. Exposes tools as structured API endpoints that agents call by name with typed parameters.</td></tr>
+      <tr><td><strong>Role here</strong></td><td>Two implementations: (1) <strong>Internal Dispatcher</strong> — <code>mcp_server/dispatcher.py</code> routes all agent data fetches through <code>call_mcp_tool()</code>, logging every call with tool name, params, result summary, and timestamp. (2) <strong>FastMCP SDK Server</strong> — <code>mcp_server/mcp_sdk_server.py</code> uses the official <code>mcp</code> Python SDK, exposing a proper stdio/SSE MCP server connectable by Claude Desktop or any MCP client. Tools: <code>get_stock_data</code>, <code>get_financial_metrics</code>, <code>get_news_sentiment</code>, <code>get_regulatory_rules</code>, <code>hybrid_rag_search_tool</code>, <code>list_rag_collections</code>.</td></tr>
+      <tr><td><strong>Why important</strong></td><td>MCP is the emerging industry standard for agent-tool communication. The official SDK implementation makes this a real MCP server, not just a named pattern — it can be connected to Claude Desktop, Cursor, and any MCP-compatible client. Demonstrates production-level architecture awareness.</td></tr>
+      <tr><td><strong>Why chosen</strong></td><td>Future-proof: as more LLM frameworks adopt MCP, this platform is already compatible. Decoupling agents from tool implementations via a protocol interface is a production best practice. The FastMCP SDK requires minimal boilerplate via decorator-based tool registration.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- BACKEND -->
+<div class="section page-break">
+  <div class="section-title">Backend Layer</div>
+  <div class="tech-grid">
+
+    <div class="tech-card">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#e0f2fe;color:#0369a1;">⚡</div>
+        <div>
+          <div class="tech-name">FastAPI</div>
+          <div class="tech-category">REST API Framework <span class="badge badge-core">Core</span></div>
+        </div>
+      </div>
+      <div class="tech-section-label">What it is</div>
+      <div class="tech-reason">A modern, async Python web framework built on Starlette + Pydantic. Auto-generates OpenAPI/Swagger docs.</div>
+      <div class="tech-section-label">Role in project</div>
+      <div class="tech-reason">Serves all REST endpoints: <code>/api/auth/*</code> (JWT), <code>/api/agents/*</code> (LangGraph analysis), <code>/api/agents/analyze-stream</code> (SSE real-time streaming), <code>/api/chat/*</code> (conversational risk chat), <code>/api/rag/*</code> (PDF upload/query), <code>/api/dashboard/*</code> (charts data), <code>/mcp/*</code> (tool protocol). Uses <code>StreamingResponse</code> for SSE delivery of agent results.</div>
+      <div class="tech-section-label">Why chosen</div>
+      <div class="tech-reason">vs. Flask: FastAPI is async-native (critical for concurrent agent calls), has automatic Pydantic validation, and generates interactive docs at <code>/api/docs</code>. vs. Django: far lighter for pure API services.</div>
+      <div class="tech-role">fastapi==0.109.2, uvicorn[standard]</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#fff7ed;color:#9a3412;">▦</div>
+        <div>
+          <div class="tech-name">SQLAlchemy + SQLite</div>
+          <div class="tech-category">ORM + Database <span class="badge badge-infra">Infrastructure</span></div>
+        </div>
+      </div>
+      <div class="tech-section-label">What it is</div>
+      <div class="tech-reason">SQLAlchemy is Python's most mature ORM. SQLite is a serverless relational database stored as a single file.</div>
+      <div class="tech-section-label">Role in project</div>
+      <div class="tech-reason">Stores 3 entities: <code>User</code> (credentials, profile), <code>RiskAnalysis</code> (all agent scores + analysis text per run), <code>UploadedDocument</code> (PDF metadata + ChromaDB collection mapping).</div>
+      <div class="tech-section-label">Why SQLite chosen</div>
+      <div class="tech-reason">Zero config, zero infrastructure cost, perfect for portfolio/demo. SQLAlchemy makes migration to PostgreSQL (Render's managed DB) a one-line change to <code>DATABASE_URL</code>.</div>
+      <div class="tech-role">sqlalchemy==2.0.27, sqlite3 (built-in)</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#f3e8ff;color:#581c87;">🔐</div>
+        <div>
+          <div class="tech-name">JWT Authentication</div>
+          <div class="tech-category">Security <span class="badge badge-security">Security</span></div>
+        </div>
+      </div>
+      <div class="tech-section-label">What it is</div>
+      <div class="tech-reason">JSON Web Tokens — a stateless authentication mechanism. A signed token (HS256) encodes user identity and expiry, verified on every protected request.</div>
+      <div class="tech-section-label">Role in project</div>
+      <div class="tech-reason">All dashboard, analysis, RAG, and history endpoints require a valid Bearer token. Implemented with <code>python-jose</code> (token signing) and <code>passlib[bcrypt]</code> (password hashing). <code>OAuth2PasswordBearer</code> dependency handles extraction.</div>
+      <div class="tech-section-label">Why JWT</div>
+      <div class="tech-reason">Stateless — no session store needed, scales horizontally. Standard for REST APIs. bcrypt password hashing with salt is industry-standard security. Compatible with every frontend framework.</div>
+      <div class="tech-role">python-jose==3.3.0, passlib[bcrypt]==1.7.4</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#ecfdf5;color:#065f46;">📄</div>
+        <div>
+          <div class="tech-name">pypdf</div>
+          <div class="tech-category">Document Processing <span class="badge badge-infra">Infrastructure</span></div>
+        </div>
+      </div>
+      <div class="tech-section-label">What it is</div>
+      <div class="tech-reason">A pure-Python PDF reading library. Extracts text content page by page from uploaded PDF files.</div>
+      <div class="tech-section-label">Role in project</div>
+      <div class="tech-reason">Reads uploaded financial PDFs, extracts text per page, splits into ~150-word overlapping chunks, which are then embedded and stored in ChromaDB. Handles annual reports, 10-K filings, and earnings documents.</div>
+      <div class="tech-section-label">Why chosen</div>
+      <div class="tech-reason">vs. pdfplumber: pypdf is lighter, faster, and pure Python with no C dependencies. vs. PyMuPDF: pypdf is open-source with a permissive license, zero native dependencies for cloud deployment.</div>
+      <div class="tech-role">pypdf==4.0.2</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FRONTEND -->
+<div class="section page-break">
+  <div class="section-title">Frontend Layer</div>
+  <div class="tech-grid">
+
+    <div class="tech-card">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#e0f2fe;color:#0369a1;">⚛</div>
+        <div>
+          <div class="tech-name">React 18 + Vite</div>
+          <div class="tech-category">UI Framework + Build Tool <span class="badge badge-core">Core</span></div>
+        </div>
+      </div>
+      <div class="tech-section-label">What it is</div>
+      <div class="tech-reason">React 18: component-based UI library with hooks. Vite: next-generation build tool using ES modules for near-instant HMR and sub-second cold starts.</div>
+      <div class="tech-section-label">Role in project</div>
+      <div class="tech-reason">Renders the entire frontend: landing page, login/register flow, 4-tab dashboard, analytics charts, agent result panels, PDF upload UI, and the interactive architecture diagram.</div>
+      <div class="tech-section-label">Why Vite over CRA</div>
+      <div class="tech-reason">Vite is 10–100× faster than Create React App for dev server startup and HMR. The proxy config in <code>vite.config.js</code> tunnels <code>/api</code> calls to FastAPI, eliminating CORS issues during development.</div>
+      <div class="tech-role">react==18.2, vite==5.1</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#f0fdf4;color:#166534;">🎨</div>
+        <div>
+          <div class="tech-name">Tailwind CSS</div>
+          <div class="tech-category">Styling Framework <span class="badge badge-core">Core</span></div>
+        </div>
+      </div>
+      <div class="tech-section-label">What it is</div>
+      <div class="tech-reason">Utility-first CSS framework. Every style is composed from atomic utility classes applied directly in JSX.</div>
+      <div class="tech-section-label">Role in project</div>
+      <div class="tech-reason">Implements the entire dark professional theme: navy-950 backgrounds, cyan accent colors, glass-morphism cards (<code>.glass-card</code>), glow borders, gradient text, risk color system (green/amber/orange/red), and all responsive layouts.</div>
+      <div class="tech-section-label">Why chosen</div>
+      <div class="tech-reason">No CSS context switching — styles live in components. Custom design tokens (<code>navy</code>, <code>risk</code> colors) defined in tailwind.config.js create a consistent design system. Tree-shaking removes unused CSS in production.</div>
+      <div class="tech-role">tailwindcss==3.4.1</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#fdf4ff;color:#7e22ce;">✦</div>
+        <div>
+          <div class="tech-name">Framer Motion</div>
+          <div class="tech-category">Animation Library <span class="badge badge-core">Core</span></div>
+        </div>
+      </div>
+      <div class="tech-section-label">What it is</div>
+      <div class="tech-reason">Production-ready motion library for React. Declarative animations with <code>motion.div</code>, spring physics, and layout animations.</div>
+      <div class="tech-section-label">Role in project</div>
+      <div class="tech-reason">Powers: hero entrance animations, animated risk score gauge (SVG strokeDashoffset), agent score bars, card hover effects, tab transitions (AnimatePresence), architecture node animations, and the animated data flow arrows in the architecture diagram.</div>
+      <div class="tech-section-label">Why chosen</div>
+      <div class="tech-reason">vs. CSS animations: Framer Motion provides physics-based springs, sequential animation orchestration, and easy exit animations. Critical for the SVG gauge animation on the landing hero card.</div>
+      <div class="tech-role">framer-motion==11.0.8</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#eff6ff;color:#1e40af;">📊</div>
+        <div>
+          <div class="tech-name">Recharts</div>
+          <div class="tech-category">Data Visualization <span class="badge badge-core">Core</span></div>
+        </div>
+      </div>
+      <div class="tech-section-label">What it is</div>
+      <div class="tech-reason">A composable charting library for React built on D3. Provides AreaChart, LineChart, BarChart, RadarChart, and more as React components.</div>
+      <div class="tech-section-label">Role in project</div>
+      <div class="tech-reason">4 chart types in the dashboard: <strong>AreaChart</strong> (30-day risk trend), <strong>LineChart</strong> (multi-agent breakdown), <strong>BarChart</strong> (risk distribution), <strong>RadarChart</strong> (agent score comparison). All dark-themed with custom tooltips.</div>
+      <div class="tech-section-label">Why chosen</div>
+      <div class="tech-reason">vs. Chart.js: Recharts is React-native (no imperative DOM manipulation). vs. D3 direct: far less boilerplate. vs. Victory: Recharts has better performance and a larger community.</div>
+      <div class="tech-role">recharts==2.12.2</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#fef9c3;color:#713f12;">🐻</div>
+        <div>
+          <div class="tech-name">Zustand</div>
+          <div class="tech-category">State Management <span class="badge badge-core">Core</span></div>
+        </div>
+      </div>
+      <div class="tech-section-label">What it is</div>
+      <div class="tech-reason">A minimal, un-opinionated state management library for React. Uses hooks-based API with <code>persist</code> middleware for localStorage sync.</div>
+      <div class="tech-section-label">Role in project</div>
+      <div class="tech-reason">Manages auth state globally: stores <code>user</code> object and <code>token</code> string, persisted to <code>localStorage</code> under key <code>bfsi-auth</code>. The Axios interceptor reads from it on every request to inject the Bearer token.</div>
+      <div class="tech-section-label">Why chosen</div>
+      <div class="tech-reason">vs. Redux: 10× less boilerplate. vs. Context API: no re-render cascade, built-in persistence. For a single shared auth state, Zustand is the minimal correct tool.</div>
+      <div class="tech-role">zustand==4.5.2</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-header">
+        <div class="tech-icon" style="background:#ecfdf5;color:#065f46;">↔</div>
+        <div>
+          <div class="tech-name">Axios + React Router v6</div>
+          <div class="tech-category">HTTP Client + Routing <span class="badge badge-core">Core</span></div>
+        </div>
+      </div>
+      <div class="tech-section-label">Role in project</div>
+      <div class="tech-reason"><strong>Axios:</strong> configured with base URL, automatic JWT header injection via request interceptor, and 401 redirect via response interceptor. <strong>React Router v6:</strong> handles 3 routes: <code>/</code> (Landing), <code>/login</code> (Auth), <code>/dashboard</code> (Protected via ProtectedRoute wrapper).</div>
+      <div class="tech-section-label">Why chosen</div>
+      <div class="tech-reason">Axios interceptors are cleaner than fetch for global token injection. React Router v6 replaced v5 with simpler nested route syntax and the <code>Navigate</code> component for redirects.</div>
+      <div class="tech-role">axios==1.6.7, react-router-dom==6.22.1</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DEPLOYMENT -->
+<div class="section">
+  <div class="section-title">Deployment Technologies</div>
+  <table>
+    <tr>
+      <th>Platform</th>
+      <th>Serves</th>
+      <th>Why Free</th>
+      <th>Config File</th>
+    </tr>
+    <tr>
+      <td><strong>Render</strong></td>
+      <td>FastAPI backend (Python web service)</td>
+      <td>Free tier: 512MB RAM, sleeps after 15min inactivity. Sufficient for demo/portfolio use.</td>
+      <td><code>render.yaml</code> in repo root</td>
+    </tr>
+    <tr>
+      <td><strong>Vercel</strong></td>
+      <td>React + Vite frontend (static SPA)</td>
+      <td>Unlimited bandwidth on free tier. SPA rewrites configured via <code>vercel.json</code>. CI/CD from GitHub auto-deploy.</td>
+      <td><code>frontend/vercel.json</code></td>
+    </tr>
+  </table>
+</div>
+
+<!-- TECH CHOICE SUMMARY TABLE -->
+<div class="section">
+  <div class="section-title">Technology Decision Summary</div>
+  <table>
+    <tr><th>Technology</th><th>Category</th><th>Key Reason for Selection</th></tr>
+    <tr><td>LangGraph</td><td>Orchestration</td><td>Stateful multi-agent graph with built-in checkpointing; native LangChain integration</td></tr>
+    <tr><td>LangChain</td><td>LLM Framework</td><td>Industry standard; composable chains; LangGraph is built on it</td></tr>
+    <tr><td>GPT-4o (mini)</td><td>LLM</td><td>Best financial reasoning quality; cost-effective mini variant; OpenAI embeddings</td></tr>
+    <tr><td>FastAPI</td><td>Backend</td><td>Async Python; auto Swagger docs; Pydantic validation; fastest Python framework</td></tr>
+    <tr><td>ChromaDB</td><td>Vector DB</td><td>Free, local, persistent; no external API; cosine similarity search; metadata filtering</td></tr>
+    <tr><td>rank-bm25</td><td>Hybrid Search</td><td>Sparse keyword retrieval; pure Python; recovers regulatory terms dense search misses</td></tr>
+    <tr><td>LLM Re-ranker</td><td>RAG Post-Processing</td><td>Single GPT batch call; no extra model download; domain-aware relevance scoring</td></tr>
+    <tr><td>MCP (Dispatcher + SDK)</td><td>Tool Protocol</td><td>Official FastMCP SDK; real stdio/SSE server; connectable by Claude Desktop; 7 tools</td></tr>
+    <tr><td>SQLAlchemy + SQLite</td><td>Storage</td><td>Zero config; one-line migration to Postgres; full ORM with relationships</td></tr>
+    <tr><td>JWT + bcrypt</td><td>Security</td><td>Stateless auth; industry-standard password hashing; REST API compatible</td></tr>
+    <tr><td>React + Vite</td><td>Frontend</td><td>10-100× faster dev experience vs CRA; component model for complex dashboards</td></tr>
+    <tr><td>Tailwind CSS</td><td>Styling</td><td>Utility-first; custom design tokens; zero runtime CSS overhead</td></tr>
+    <tr><td>Recharts</td><td>Charts</td><td>React-native; 4 chart types needed; dark-theme customizable</td></tr>
+    <tr><td>Framer Motion</td><td>Animation</td><td>Required for SVG gauge animation and architecture diagram flow animations</td></tr>
+    <tr><td>SSE Streaming</td><td>Real-Time Delivery</td><td>FastAPI StreamingResponse; agents stream results live to frontend as they complete; no polling</td></tr>
+    <tr><td>Guardrails (LLM-as-Judge)</td><td>Validation</td><td>GPT-4o-mini cross-checks agent output against MCP source data; per-agent confidence + overall trust score</td></tr>
+    <tr><td>Multi-Agent Debate</td><td>Adversarial Review</td><td>Devil's Advocate + Judge agents stress-test conclusions; reduces confirmation bias in risk assessments</td></tr>
+    <tr><td>Conversational Chat</td><td>Post-Analysis UX</td><td>GPT-4o-mini with full analysis context + chat history; interactive follow-up on risk reports</td></tr>
+  </table>
+</div>
+
+<footer>
+  <span>BFSI Multi-Agent Financial Risk Assessment Platform</span>
+  <span>Document 1 of 3 — Technology Stack Deep Dive</span>
+  <span>Open in browser → Ctrl+P → Save as PDF</span>
+</footer>
+
+</body>
+</html>
