@@ -228,146 +228,73 @@ Interactive dashboard with:
 
 ## Screenshots & Feature Walkthrough
 
-> **Note:** To add screenshots, place them in a `screenshots/` folder and update the paths below.
+### 1. Landing Page — Hero Section
+The hero section introduces the platform with a live risk assessment preview card showing a sample TechCorp Global analysis, risk score gauge (73.2/100), and agent score breakdowns. Key value propositions are highlighted: RAG pipeline (~80% less manual analysis), JWT-secured APIs, real-time scoring, and MCP tool coordination.
 
-### Landing Page
-The landing page showcases the platform's capabilities with an interactive architecture diagram, agent cards, tech stack display, and call-to-action sections.
-
-<!-- ![Landing Page](screenshots/01-landing.png) -->
-
-**Features shown:**
-- Interactive SVG architecture diagram (click any node to inspect)
-- 4 agent cards with descriptions and key metrics
-- Platform infrastructure cards (RAG, MCP, JWT, Analytics)
-- Request flow walkthrough (8 steps)
+![Landing Page Hero](screenshots/01-landing-hero.png)
 
 ---
 
-### Login & Authentication
-JWT-secured authentication with login/register toggle, role-based demo accounts, and protected dashboard routes.
+### 2. AI Agent Cards & Platform Features
+Four specialized AI agent cards detail each agent's role, LangGraph badge, description, and key metrics. Below, platform infrastructure cards cover ChromaDB RAG, MCP Tool Layer, JWT-Secured APIs, and the Analytics Dashboard.
 
-<!-- ![Login](screenshots/02-login.png) -->
-
-**Features shown:**
-- Email/password authentication
-- Register new accounts
-- Demo credential quick-access
-- JWT token-based session management
+![Features & Agents](screenshots/02-features-agents.png)
 
 ---
 
-### Dashboard — Overview Tab
-Analytics dashboard displaying aggregate risk metrics, trend charts, agent breakdowns, and risk distribution.
+### 3. Interactive Architecture Diagram
+A fully interactive SVG architecture diagram showing the complete request flow — from React frontend through JWT Auth, FastAPI Gateway, MCP Server, LangGraph Orchestrator, 4 Agent Nodes, GPT-4o, ChromaDB, and SQLite. Click any node to inspect. An 8-step request flow sidebar explains each stage.
 
-<!-- ![Dashboard Overview](screenshots/03-dashboard-overview.png) -->
-
-**Features shown:**
-- Stat cards: Total Analyses, Avg Risk Score, High Risk count, RAG status
-- Risk score trend chart (line chart over time)
-- Agent averages comparison card
-- Agent breakdown chart (multi-series bar chart)
-- Risk distribution bar (LOW / MEDIUM / HIGH / CRITICAL)
-- Recent analyses list with color-coded risk levels
+![Architecture Diagram](screenshots/03-architecture.png)
 
 ---
 
-### Dashboard — Run Analysis Tab
-The core analysis interface where users select a company and run the full multi-agent pipeline.
+### 4. Login & Authentication
+JWT-secured authentication with Sign In / Create Account toggle. Tech badges (FastAPI, JWT Auth, SQLite, bcrypt) confirm the auth stack. Demo users can register instantly or use pre-seeded credentials.
 
-<!-- ![Run Analysis](screenshots/04-run-analysis.png) -->
-
-**Features shown:**
-- Quick-select pre-seeded companies (TechCorp, FinanceHub, EnergyMax, PharmaCare, RetailGiant)
-- Custom company input (name, ticker, sector)
-- Optional ChromaDB collection linking for RAG
-- Real-time SSE streaming indicators showing each agent's progress
-- Animated agent status (running / done / error)
+![Login Page](screenshots/04-login.png)
 
 ---
 
-### Analysis Results — Risk Scores
-After analysis completes, the results panel shows risk scores, gauges, and trust metrics.
+### 5. Dashboard — Overview Tab
+The analytics dashboard shows stat cards (Total Analyses, Avg Risk Score, High Risk count, RAG Active status), a 30-day Risk Score Trend chart, Average Agent Scores comparison bar, Agent Score Breakdown multi-line chart, and Risk Distribution histogram (LOW/MEDIUM/HIGH/CRITICAL). Tech banner across the top confirms all active technologies.
 
-<!-- ![Analysis Results](screenshots/05-analysis-results.png) -->
-
-**Features shown:**
-- Animated risk score gauge (circular SVG)
-- Trust score badge from guardrails validation
-- Original vs adjusted risk score (post-debate)
-- Executive summary text
-- Tech stack active indicators
+![Dashboard Overview](screenshots/05-dashboard-overview.png)
 
 ---
 
-### Analysis Results — Agent Details
-Expandable panels showing each agent's detailed analysis, metrics, and MCP tool calls.
+### 6. Run Analysis Tab
+The core analysis interface. Left panel: Quick Select grid of 5 pre-seeded companies (TechCorp Global, FinanceHub Ltd, EnergyMax Inc, PharmaCare Corp, RetailGiant Co) with ticker and sector labels, custom company input fields, optional ChromaDB collection linking, and the "Run Full Risk Analysis" button. Right panel: "Ready to Analyze" state with 4 agent badges (Market Risk, Sentiment, Financial RAG, Regulatory).
 
-<!-- ![Agent Details](screenshots/06-agent-details.png) -->
-
-**Features shown:**
-- Per-agent analysis text (GPT-generated)
-- Key metrics for each domain (volatility, sentiment, ratios, compliance)
-- MCP tool calls logged per agent
-- Guardrails confidence scores per agent
-- RAG sources and hybrid scores (for Financial Report agent)
+![Run Analysis](screenshots/06-run-analysis.png)
 
 ---
 
-### Multi-Agent Debate Panel
-The Devil's Advocate vs Judge debate interface showing challenges, rulings, and score adjustments.
+### 7. RAG / Documents Tab
+The Advanced RAG Pipeline view. Left side: Default Collection Active banner (`sample_financial_docs` with 3 auto-ingested PDFs), 4-stage ChromaDB Retrieval Pipeline explanation (Ingestion → Hybrid Retrieval → LLM Re-ranking → Augmented Analysis), and "Why Hybrid Search?" rationale. Right side: PDF upload with drag-and-drop, Indexed Documents list, and RAG Query interface for semantic search over indexed documents.
 
-<!-- ![Debate Panel](screenshots/07-debate-panel.png) -->
-
-**Features shown:**
-- Devil's Advocate challenges (color-coded by severity: critical/major/minor)
-- Target agent identification for each challenge
-- Judge verdicts with ruling icons (accepted / partially accepted / dismissed)
-- Reasoning for each ruling
-- Score adjustment grid (original → adjusted)
-- Adjusted overall score with debate impact rating (minimal/moderate/significant)
-- Contradictions detected between agents
+![RAG Documents](screenshots/07-rag-documents.png)
 
 ---
 
-### Conversational Risk Chat
-Chat interface for asking follow-up questions about any completed analysis.
+### 8. Analysis History Tab
+Chronological list of all past risk analyses with per-analysis score breakdowns (Overall, Market, Sentiment, Financial, Compliance), color-coded risk level badges (LOW=green, MEDIUM=amber, HIGH=orange, CRITICAL=red), timestamps, and company/ticker identifiers.
 
-<!-- ![Risk Chat](screenshots/08-risk-chat.png) -->
-
-**Features shown:**
-- Suggested question chips for quick start
-- User/AI message bubbles with avatars
-- Context-aware responses referencing the specific analysis
-- What-if scenario support
-- Chat history persistence
-- Clear history option
+![History Tab](screenshots/08-history.png)
 
 ---
 
-### RAG / Documents Tab
-Document upload and RAG pipeline management interface.
+### 9. Live SSE Streaming — Agent Pipeline
+Real-time Server-Sent Events streaming during analysis execution. The "AGENT PIPELINE — LIVE" section shows each agent's progress: Market Risk Agent completed (Score: 35.3/100), Sentiment Agent completed (Score: 42.1/100), and Financial Report Agent (RAG) currently analyzing with a spinner. The button changes to "Running 4 Agents..." with a loading indicator.
 
-<!-- ![RAG Tab](screenshots/09-rag-documents.png) -->
-
-**Features shown:**
-- Pre-loaded collection status (sample_financial_docs)
-- 4-stage pipeline explanation (Ingestion → Hybrid Retrieval → Re-ranking → Augmented Generation)
-- Why Hybrid Search explanation
-- PDF upload with drag-and-drop
-- Collection management
+![Analysis Streaming](screenshots/09-analysis-streaming.png)
 
 ---
 
-### Analysis History Tab
-Full history of all past analyses with risk metrics and color-coded levels.
+### 10. Swagger API Documentation
+Auto-generated FastAPI Swagger UI at `/api/docs` showing all REST endpoints organized by tags: Auth, Agents, Streaming Analysis, Risk Chat, RAG, Dashboard, and MCP Tools. Each endpoint is expandable with request/response schemas, parameters, and try-it-out functionality.
 
-<!-- ![History Tab](screenshots/10-history.png) -->
-
-**Features shown:**
-- Chronological list of all analyses
-- Per-analysis scores (Overall, Market, Sentiment, Financial, Compliance)
-- Color-coded risk level badges
-- Timestamps
+![API Docs](screenshots/14-api-docs.png)
 
 ---
 
